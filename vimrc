@@ -25,7 +25,7 @@ function! TMUX_send_lines(n) abort
     execute "normal! " . a:n . "yy"
     call TMUX_send(@")
     call setreg('"', rv, rt)
-    execute "normal! " . a:n . "j"
+    silent! execute "normal! " . a:n . "j"
 endfunction
 
 function! TMUX_send_paragraph() abort
