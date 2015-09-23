@@ -173,7 +173,6 @@ endfunction
 " Alternatives to <esc> for getting back into normal mode:
 " <c-[> or <c-c> or jk.
 inoremap jk <esc>
-vnoremap jk <esc>
 
 " Edit configuration file in new tab.
 nnoremap <leader>ee :tabedit $MYVIMRC<cr>
