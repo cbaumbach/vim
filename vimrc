@@ -150,7 +150,7 @@ function! Summarize_tabs()
 endfunction
 " }}}
 " {{{ Show highlighting groups for word under cursor.
-nnoremap <F4> :call <SID>Show_highlighting_group()<cr>
+nnoremap <leader>= :call <SID>Show_highlighting_group()<cr>
 function! <SID>Show_highlighting_group()
     if !exists('*synstack')
         return
