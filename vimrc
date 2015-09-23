@@ -203,14 +203,6 @@ nnoremap <leader>L :setlocal list!<cr>
 " Change to directory of current file.
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 
-" Expand path to the current directory in command mode.
-cnoremap %% <c-r>=expand('%:p:h') . '/'<cr>
-
-" Edit file in current directory.
-nmap <leader>ew :e %%
-nmap <leader>es :vsp %%
-nmap <leader>et :tabe %%
-
 " Display tabular data in a readable way.
 command! -nargs=* PrettyTable .,$!column -t -s'<tab>'
 " }}}
