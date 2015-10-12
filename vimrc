@@ -181,9 +181,9 @@ nnoremap <leader>ee :tabedit $MYVIMRC<cr>
 nnoremap <leader>ss :source $MYVIMRC<cr>
 
 " Toggle paste mode.
-nnoremap <silent> <leader>p :set paste<cr>i
-inoremap <leader>p <c-o>:set paste<cr>
-set pastetoggle=<leader>p
+nnoremap <silent> <localleader>p :set paste<cr>i
+inoremap <localleader>p <c-o>:set paste<cr>
+set pastetoggle=<localleader>p
 
 " Remove highlighting.
 nnoremap <silent> <leader>a :nohlsearch<cr>
