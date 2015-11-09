@@ -36,6 +36,9 @@ function! TMUX_send_paragraph() abort
     call TMUX_send(@")
     call setreg('"', rv, rt)
     normal! }
+    if line(".") != line("$")
+        normal! j
+    endif
 endfunction
 
 function! TMUX_send_op(type, ...) abort
