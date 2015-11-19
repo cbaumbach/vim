@@ -183,6 +183,15 @@ function! Remove_trailing_whitespace()
     endif
 endfunction
 " }}}
+" {{{ Remove empty lines at the end of the file
+function! Remove_empty_lines_at_end_of_file()
+    if !&binary
+        let old_cursor_position = getpos(".")
+        silent! v/\_s*\S/d
+        call setpos(".", old_cursor_position)
+    endif
+endfunction
+" }}}
 
 " Alternatives to <esc> for getting back into normal mode:
 " <c-[> or <c-c> or jk.
@@ -225,6 +234,7 @@ if has('autocmd')
     augroup general
         autocmd!
         autocmd BufWritePre * call Remove_trailing_whitespace()
+        autocmd BufWritePre * call Remove_empty_lines_at_end_of_file()
     augroup END
 
     augroup filetype_vim
