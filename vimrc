@@ -173,6 +173,16 @@ function! Landscape_hardcopy()
     execute 'set printoptions=portrait:n | hardcopy | set printoptions=portrait:y<cr>'
 endfunction
 " }}}
+" {{{ Remove trailing whitespace
+function! Remove_trailing_whitespace()
+    if !&binary
+        let old_cursor_position = getpos(".")
+        silent! %s/\s\+$//ge
+        call setpos(".", old_cursor_position)
+        " normal! ``
+    endif
+endfunction
+" }}}
 
 " Alternatives to <esc> for getting back into normal mode:
 " <c-[> or <c-c> or jk.
@@ -214,8 +224,7 @@ if has('autocmd')
 
     augroup general
         autocmd!
-        " Delete trailing whitespace before write.
-        autocmd BufWritePre * if !&bin | silent! %s/\s\+$//ge | endif
+        autocmd BufWritePre * call Remove_trailing_whitespace()
     augroup END
 
     augroup filetype_vim
