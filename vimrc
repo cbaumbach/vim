@@ -86,7 +86,7 @@ set hlsearch
 nohlsearch  " turn off highlighting turned on by 'set hlsearch'
 set ignorecase
 set incsearch
-set laststatus=0
+set laststatus=2
 set list
 set listchars=conceal:\ ,tab:¿\ ,trail:·,extends:»,precedes:«
 set printoptions=formfeed:y
