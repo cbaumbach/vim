@@ -31,7 +31,7 @@ hi VertSplit        ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=non
 hi Folded           ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi FoldColumn       ctermfg=7  guifg=#c0c0c0 ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi SignColumn       ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
-hi IncSearch        ctermfg=0  guifg=#000000 ctermbg=8   guibg=#808080 cterm=none gui=none term=none
+hi IncSearch        ctermfg=0  guifg=#000000 ctermbg=7   guibg=#808080 cterm=none gui=none term=none
 hi LineNr           ctermfg=8  guifg=#808080 ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi CursorLineNr     ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi MatchParen       ctermfg=0  guifg=#000000 ctermbg=7   guibg=#808080 cterm=none gui=none term=none
@@ -44,7 +44,7 @@ hi PmenuSel         ctermfg=8  guifg=#808080 ctermbg=15  guibg=#ffffff cterm=non
 hi PmenuSbar        ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi PmenuThumb       ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi Question         ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
-hi Search           ctermfg=0  guifg=#000000 ctermbg=8   guibg=#808080 cterm=none gui=none term=none
+hi Search           ctermfg=0  guifg=#000000 ctermbg=7   guibg=#808080 cterm=none gui=none term=none
 hi SpecialKey       ctermfg=8  guifg=#808080 ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi SpellBad         ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi SpellCap         ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
