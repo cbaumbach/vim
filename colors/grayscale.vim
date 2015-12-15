@@ -52,9 +52,9 @@ hi SpellLocal       ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=non
 hi SpellRare        ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
 hi StatusLine       ctermfg=15 guifg=#ffffff ctermbg=8   guibg=#808080 cterm=none gui=none term=none
 hi StatusLineNC     ctermfg=15 guifg=#ffffff ctermbg=8   guibg=#808080 cterm=none gui=none term=none
-hi TabLine          ctermfg=0  guifg=#000000 ctermbg=8   guibg=#808080 cterm=none gui=none term=none
+hi TabLine          ctermfg=7  guifg=#000000 ctermbg=0   guibg=#808080 cterm=none gui=none term=none
 hi TabLineFill      ctermfg=15 guifg=#ffffff ctermbg=8   guibg=#808080 cterm=none gui=none term=none
-hi TabLineSel       ctermfg=15 guifg=#ffffff ctermbg=8   guibg=#808080 cterm=none gui=none term=none
+hi TabLineSel       ctermfg=0  guifg=#ffffff ctermbg=7   guibg=#808080 cterm=none gui=none term=none
 hi Title            ctermfg=0  guifg=#000000 ctermbg=8   guibg=#808080 cterm=none gui=none term=none
 hi Visual           ctermfg=0  guifg=#ffffff ctermbg=7   guibg=#808080 cterm=none gui=none term=none
 hi VisualNOS        ctermfg=15 guifg=#ffffff ctermbg=0   guibg=#000000 cterm=none gui=none term=none
