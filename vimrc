@@ -14,7 +14,10 @@ function! TMUX_setup()
 endfunction
 
 function! TMUX_send(text)
-    call system("tmux -L default load-buffer -", a:text)
+    " This works with tmux v2.0 but not with v1.6.
+    " call system("tmux -L default load-buffer -", a:text)
+    " The following works in both versions.
+    call system("cat - | tmux -L default load-buffer -", a:text)
     call system("tmux -L default paste-buffer -d -t " . b:tmux_target_pane)
 endfunction
 
