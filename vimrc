@@ -21,24 +21,33 @@ function! TMUX_send(text)
     call system("tmux -L default paste-buffer -d -t " . b:tmux_target_pane)
 endfunction
 
-function! TMUX_send_lines(n) abort
+function! TMUX_send_lines(number_of_lines) abort
     call TMUX_setup()
-    let rv = getreg('"')
-    let rt = getregtype('"')
-    execute "normal! " . a:n . "yy"
+    " Save contents and type of unnamed register.
+    let register_content = getreg('"')
+    let register_type = getregtype('"')
+    " Copy number_of_lines lines into unnamed register.
+    execute "normal! " . a:number_of_lines . "yy"
+    " Send contents of unnamed register to target pane.
     call TMUX_send(@")
-    call setreg('"', rv, rt)
-    silent! execute "normal! " . a:n . "j"
+    " Reinsert old contents and type into unnamed register.
+    call setreg('"', register_content, register_type)
+    " Advance number_of_lines lines.
+    silent! execute "normal! " . a:number_of_lines . "j"
 endfunction
 
 function! TMUX_send_paragraph() abort
     call TMUX_setup()
-    let rv = getreg('"')
-    let rt = getregtype('"')
+    " Save contents and type of unnamed register.
+    let register_content = getreg('"')
+    let register_type = getregtype('"')
     normal! yip
     call TMUX_send(@")
-    call setreg('"', rv, rt)
+    " Reinsert old contents and type into unnamed register.
+    call setreg('"', register_content, register_type)
+    " Advance to next paragraph.
     normal! }
+    " Advance by another line unless we're at the of the buffer.
     if line(".") != line("$")
         normal! j
     endif
@@ -47,8 +56,9 @@ endfunction
 function! TMUX_send_op(type, ...) abort
     let saved_selection = &selection
     let &selection = "inclusive"
-    let rv = getreg('"')
-    let rt = getregtype('"')
+    " Save contents and type of unnamed register.
+    let register_content = getreg('"')
+    let register_type = getregtype('"')
     if a:type == "char"
         silent execute "normal! `[v`]y"
     elseif a:type == "line"
@@ -61,7 +71,8 @@ function! TMUX_send_op(type, ...) abort
     call setreg('"', @", 'l')  " set register to linewise mode
     call TMUX_send(@")
     let &selection = saved_selection
-    call setreg('"', rv, rt)
+    " Reinsert old contents and type into unnamed register.
+    call setreg('"', register_content, register_type)
 endfunction
 
 nnoremap <silent> cn :<c-u>call TMUX_send_lines(v:count1)<cr>
