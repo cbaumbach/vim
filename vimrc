@@ -5,6 +5,7 @@ if has('syntax')
 endif
 filetype plugin indent on
 colorscheme grayscale
+execute pathogen#infect()
 " }}}
 " {{{ Integration with tmux
 function! TMUX_setup()
