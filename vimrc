@@ -100,7 +100,7 @@ set ignorecase
 set incsearch
 set laststatus=2
 set list
-set listchars=conceal:\ ,tab:¿\ ,trail:·
+set listchars=conceal:\ ,tab:»\ ,trail:·
 set printoptions=formfeed:y
 set shortmess+=I
 set showbreak=…
