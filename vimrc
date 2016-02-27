@@ -104,7 +104,7 @@ set listchars=conceal:\ ,tab:»\ ,trail:·
 set matchtime=5
 set printoptions=formfeed:y
 set shortmess+=I
-set showbreak=…
+let &showbreak = '> '
 set showmatch
 set sidescroll=1
 set smartcase
