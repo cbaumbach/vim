@@ -90,10 +90,7 @@ set cmdwinheight=1  " see also help for cmdwin
 set directory=$HOME/tmp//
 set encoding=utf-8
 set expandtab
-" If stl == stlnc, Vim will use the ugly '^^^' in the status line of
-" the current window.  To avoid this, we use slightly different fill
-" characters.
-set fillchars=stl:—,stlnc:-,vert:\|,fold:—,diff:—
+set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=0
 set formatoptions=roqlct
 set hidden
