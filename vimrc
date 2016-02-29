@@ -5,6 +5,7 @@ if has('syntax')
 endif
 filetype plugin indent on
 colorscheme grayscale
+runtime utils/testing.vim
 execute pathogen#infect()
 " }}}
 " {{{ Integration with tmux
