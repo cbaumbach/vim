@@ -47,6 +47,7 @@ function! s:send_paragraph() abort
 endfunction
 
 function! s:send_op(type, ...) abort
+    call s:setup()
     let saved_selection = &selection
     let &selection = "inclusive"
     " Save contents and type of unnamed register.
