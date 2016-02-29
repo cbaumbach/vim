@@ -39,7 +39,7 @@ endfunction
 function! Sum(list)
     let sum = 0
     for x in a:list
-        let sum = sum + x
+        let sum += x
     endfor
     return sum
 endfunction
@@ -54,8 +54,8 @@ function! s:adjust_width(natural_width, available_width)
     let amount = a:available_width
     while amount > 0
         if width[tab] < a:natural_width[tab]
-            let width[tab] = width[tab] + 1
-            let amount = amount - 1
+            let width[tab] += 1
+            let amount -= 1
         endif
         let tab = (tab + 1) % number_of_tabs
     endwhile
