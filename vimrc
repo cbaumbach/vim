@@ -320,6 +320,10 @@ nnoremap <leader><space> !!perl -pe 's/(.)/\1 /g; s/  *$//'<cr>
 " Follow tag in new tab.
 nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
 
+" Toggle Error highlighting group.
+nnoremap <silent> <leader>e :hi! link Error Normal<cr>
+nnoremap <silent> <leader>E :hi! link Error Contrast<cr>
+
 " Toggle list mode.
 nnoremap <leader>L :setlocal list!<cr>
 
