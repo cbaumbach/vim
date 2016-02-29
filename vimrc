@@ -303,6 +303,9 @@ nnoremap <leader>ss :source $MYVIMRC<cr>
 " Source current file.
 nnoremap ss :source %<cr>
 
+" Trigger reloading of filetype-specific files.
+nnoremap rr :let &l:filetype = &l:filetype<cr>
+
 " Toggle paste mode.
 nnoremap <silent> <localleader>p :set paste<cr>i
 inoremap <localleader>p <c-o>:set paste<cr>
