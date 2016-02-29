@@ -8,11 +8,11 @@ function! GetRFold(lnum)
     if this_line =~? '\v^\s*$'
         return '-1'
     endif
-    let this_indent = IndentLevel(a:lnum)
+    let this_indent = s:indent_level(a:lnum)
     if this_line =~? '\v^\s*}\s*$'
         return this_indent + 1
     endif
-    let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
+    let next_indent = s:indent_level(s:next_non_blank_line(a:lnum))
     if next_indent <= this_indent
         return this_indent
     else
@@ -20,11 +20,11 @@ function! GetRFold(lnum)
     endif
 endfunction
 
-function! IndentLevel(lnum)
+function! s:indent_level(lnum)
     return indent(a:lnum) / &shiftwidth
 endfunction
 
-function! NextNonBlankLine(lnum)
+function! s:next_non_blank_line(lnum)
     let number_of_lines = line('$')
     let line_number = a:lnum + 1
     while line_number <= number_of_lines
