@@ -43,7 +43,11 @@ function! s:query_user(vocabulary_list)
 endfunction
 
 function! s:prompt(entry)
-    return s:strip_space(input('> ' . a:entry[0] . "\n"))
+    return s:strip_space(input(s:prompt_string(a:entry)))
+endfunction
+
+function! s:prompt_string(entry)
+    return '> ' . a:entry[0] . "\n"
 endfunction
 
 function! s:is_correct(answer, entry)
@@ -71,3 +75,15 @@ call Testthat("new_entry works",
     \ s:new_entry("\tb") == [],
     \ s:new_entry("a\tb") == ['a', 'b'],
     \ s:new_entry("  a  \t  b  ") == ['a', 'b'])
+
+" ==== prompt_string =================================================
+
+call Testthat("prompt_string works",
+    \ s:prompt_string(['a', '']) == "> a\n")
+
+" ==== is_correct ====================================================
+
+call Testthat("is_correct works",
+    \ s:is_correct('a', ['', 'a']),
+    \ s:is_correct('', ['', '']),
+    \ !s:is_correct('a', ['', 'b']))
