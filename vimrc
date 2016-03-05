@@ -156,7 +156,7 @@ nnoremap <leader>ee :tabedit $MYVIMRC<cr>
 nnoremap <leader>ss :source $MYVIMRC<cr>
 
 " Source current file.
-nnoremap ss :source %<cr>
+nnoremap ss :write<cr>:source %<cr>
 
 " Trigger reloading of filetype-specific files.
 nnoremap rr :let &l:filetype = &l:filetype<cr>
