@@ -1,7 +1,27 @@
+let s:question = 0
+let s:answer = 1
+
 function! vocabulary_trainer#TrainVocabulary()
     let file = expand(input('File: ', '', 'file'))
+    call s:determine_direction_of_translation()
     let vocabulary_list = s:read_vocabulary(file)
     call s:query_user(vocabulary_list)
+endfunction
+
+function! s:determine_direction_of_translation()
+    let right_to_left = input(
+        \ "Direction of translation?\n" .
+        \ "[1] LEFT column to RIGHT column\n" .
+        \ "[2] RIGHT column to LEFT column\n" .
+        \ '> ', '1')
+    redraw
+    if right_to_left ==? '1'
+        let s:question = 0
+        let s:answer = 1
+    else
+        let s:question = 1
+        let s:answer = 0
+    endif
 endfunction
 
 function! s:read_vocabulary(file)
@@ -47,11 +67,11 @@ function! s:prompt(entry)
 endfunction
 
 function! s:prompt_string(entry)
-    return '> ' . a:entry[0] . "\n"
+    return '> ' . a:entry[s:question] . "\n"
 endfunction
 
 function! s:is_correct(answer, entry)
-    return a:answer ==? a:entry[1]
+    return a:answer ==? a:entry[s:answer]
 endfunction
 
 hi CorrectAnswer ctermfg=Green ctermbg=Black guifg=Green guibg=Black
