@@ -33,15 +33,21 @@ endfunction
 
 function! s:query_user(vocabulary_list)
     for entry in a:vocabulary_list
-        let question = entry[0]
-        let correct_answer = entry[1]
-        let answer = s:strip_space(input('> ' . question . "\n"))
-        if answer ==? correct_answer
+        let answer = s:prompt(entry)
+        if s:is_correct(answer, entry)
             echohl CorrectAnswer | echo answer | echohl None
         else
             echohl WrongAnswer | echo answer | echohl None
         endif
     endfor
+endfunction
+
+function! s:prompt(entry)
+    return s:strip_space(input('> ' . a:entry[0] . "\n"))
+endfunction
+
+function! s:is_correct(answer, entry)
+    return a:answer ==? a:entry[1]
 endfunction
 
 hi CorrectAnswer ctermfg=Green ctermbg=Black guifg=Green guibg=Black
