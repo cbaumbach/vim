@@ -2,30 +2,34 @@ let s:prompt = '>'
 let s:buffer_width = 20
 
 function! vocabulary_trainer#Train(...)
+    let d = s:parse_arguments(a:000)
     let buffer = s:make_new_buffer()
     call s:move_to_buffer(buffer)
     redraw
-    let number_of_arguments = a:0
+    let b:vocabulary_list = s:read_vocabulary_list(d['file'])
+    let b:question = d['question']
+    let b:answer = d['answer']
+    let b:current_entry = 0
+    call s:prompt_for_translation()
+endfunction
+
+function! s:parse_arguments(args)
+    let number_of_arguments = len(a:args)
     if number_of_arguments == 0
         let file = s:prompt_for_vocabulary_file()
         let right_to_left = 0
     elseif number_of_arguments == 1
-        let file = a:1
+        let file = a:args[0]
         let right_to_left = 0
     else
-        let file = a:1
-        let right_to_left = (a:2) ? 1 : 0
+        let file = a:args[0]
+        let right_to_left = (a:args[1]) ? 1 : 0
     endif
-    if right_to_left
-        let b:question = 1
-        let b:answer = 0
-    else
-        let b:question = 0
-        let b:answer = 1
-    endif
-    let b:vocabulary_list = s:read_vocabulary_list(file)
-    let b:current_entry = 0
-    call s:prompt_for_translation()
+    let d = {}
+    let d['file'] = file
+    let d['question'] = (right_to_left ? 1 : 0)
+    let d['answer'] = 1 - d['question']
+    return d
 endfunction
 
 function! vocabulary_trainer#TrainVocabulary()
