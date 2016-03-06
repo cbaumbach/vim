@@ -98,7 +98,6 @@ endfunction
 function! s:is_correct()
     let answer = s:find_answer(getline(line('.')))
     let correct_answer = s:find_correct_answer()
-    " let correct_answer = b:vocabulary_list[b:current_entry][b:answer]
     if answer ==? correct_answer
         execute "normal! A +\<esc>"
     else
