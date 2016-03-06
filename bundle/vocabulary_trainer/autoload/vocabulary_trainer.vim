@@ -18,9 +18,9 @@ function! s:determine_direction_of_translation()
         \ "Direction of translation?\n" .
         \ "[1] LEFT column to RIGHT column\n" .
         \ "[2] RIGHT column to LEFT column\n" .
-        \ s:answer_prefix, '1'))
+        \ s:answer_prefix, '1')) ==? '1'
     redraw
-    if right_to_left ==? '1'
+    if right_to_left
         let b:question = 0
         let b:answer = 1
     else
