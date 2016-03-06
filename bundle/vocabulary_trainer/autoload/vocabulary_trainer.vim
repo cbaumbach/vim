@@ -75,13 +75,9 @@ function! s:move_to_vocabulary_trainer_buffer()
         execute win . 'wincmd w'
     endif
     if buffer_is_new
-        call s:set_up_vocabulary_buffer()
+        call s:set_buffer_options()
+        call s:set_up_mappings()
     endif
-endfunction
-
-function! s:set_up_vocabulary_buffer()
-    call s:set_buffer_options()
-    call s:set_up_mappings()
 endfunction
 
 function! s:set_buffer_options()
