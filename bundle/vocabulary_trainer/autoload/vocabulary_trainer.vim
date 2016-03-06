@@ -10,7 +10,6 @@ endfunction
 function! s:prepare_buffer(d)
     let buffer = s:make_new_buffer()
     call s:move_to_buffer(buffer)
-    redraw
     let b:vocabulary_list = s:read_vocabulary_list(a:d['file'])
     let b:question = a:d['question']
     let b:answer = a:d['answer']
