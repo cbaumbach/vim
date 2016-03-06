@@ -80,9 +80,13 @@ function! s:move_to_vocabulary_trainer_buffer()
 endfunction
 
 function! s:set_up_vocabulary_buffer()
+    call s:set_buffer_options()
+    call s:set_up_mappings()
+endfunction
+
+function! s:set_buffer_options()
     setlocal buftype=nofile
     setlocal filetype=vocabulary_trainer
-    call s:set_up_mappings()
 endfunction
 
 function! s:set_up_mappings()
