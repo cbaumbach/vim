@@ -102,11 +102,8 @@ endfunction
 function! s:is_correct()
     let answer = s:find_answer(getline(line('.')))
     let correct_answer = s:find_correct_answer()
-    if answer ==? correct_answer
-        execute "normal! A +\<esc>"
-    else
-        execute "normal! A -\<esc>"
-    endif
+    let marker = (answer ==? correct_answer) ? '+' : '-'
+    execute 'normal! A ' . marker . "\<esc>"
     let b:current_entry += 1
     call s:prompt_for_translation(b:current_entry)
 endfunction
