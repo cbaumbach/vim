@@ -1,6 +1,33 @@
 let s:prompt = '>'
 let s:buffer_width = 20
 
+function! vocabulary_trainer#Train(...)
+    let buffer = s:make_new_buffer()
+    call s:move_to_buffer(buffer)
+    redraw
+    let number_of_arguments = a:0
+    if number_of_arguments == 0
+        let file = s:prompt_for_vocabulary_file()
+        let right_to_left = 0
+    elseif number_of_arguments == 1
+        let file = a:1
+        let right_to_left = 0
+    else
+        let file = a:1
+        let right_to_left = (a:2) ? 1 : 0
+    endif
+    if right_to_left
+        let b:question = 1
+        let b:answer = 0
+    else
+        let b:question = 0
+        let b:answer = 1
+    endif
+    let b:vocabulary_list = s:read_vocabulary_list(file)
+    let b:current_entry = 0
+    call s:prompt_for_translation()
+endfunction
+
 function! vocabulary_trainer#TrainVocabulary()
     call s:set_up_buffer()
     call s:prompt_for_translation()
