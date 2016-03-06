@@ -1,4 +1,3 @@
-let s:question_prefix = '? '
 let s:answer_prefix = '> '
 let s:buffer_width = 20
 
@@ -101,8 +100,7 @@ function! s:prompt_for_translation()
         return
     endif
     let question = b:vocabulary_list[b:current_entry][b:question]
-    let prompt = s:question_prefix . question
-    call append(line('$'), prompt)
+    call append(line('$'), '? ' . question)
     if getline(1) =~? '\v^\s*$'
         execute '1delete'
     endif
