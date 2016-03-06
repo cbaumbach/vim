@@ -87,8 +87,7 @@ function! s:prompt_for_translation(entry)
 endfunction
 
 function! s:is_correct()
-    let this_line = getline(line('.'))
-    let answer = s:trim(substitute(this_line, '\v^[>\s]*', '', ''))
+    let answer = s:find_answer(getline(line('.')))
     let correct_answer = b:vocabulary_list[b:current_entry][b:answer]
     if answer ==? correct_answer
         execute "normal! A +\<esc>"
@@ -98,6 +97,10 @@ function! s:is_correct()
     let b:current_entry += 1
     call s:prompt_for_translation(b:current_entry)
 endfunction
+
+function! s:find_answer(line)
+    return s:trim(substitute(a:line, '\v^[>\s]*', '', ''))
+endfunction!
 
 " ==== trim ==========================================================
 
