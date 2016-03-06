@@ -37,7 +37,8 @@ function! s:prompt_for_vocabulary_file()
 endfunction
 
 function! s:add_title(filename)
-    call append(0, 'File: ' . a:filename)
+    let title = 'File: ' . a:filename
+    call append(0, title)
 endfunction
 
 function! s:determine_direction_of_translation()
