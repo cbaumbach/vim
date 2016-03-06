@@ -1,17 +1,15 @@
 let s:buffer_label = 'VOCABULARY_TRAINER'
-let s:session_id = 0
 let s:question_prefix = '? '
 let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
-    let s:session_id += 1
     call s:set_up_buffer()
     call s:prompt_for_translation()
 endfunction
 
 function! s:set_up_buffer()
-    let buffer_name = s:make_buffer_name()
-    call s:move_to_buffer(buffer_name)
+    let buffer = s:make_new_buffer()
+    call s:move_to_buffer(buffer)
     redraw
     let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:add_title(vocabulary_file)
@@ -20,8 +18,17 @@ function! s:set_up_buffer()
     let b:current_entry = 0
 endfunction
 
-function! s:make_buffer_name()
-    return s:buffer_label . '_' . s:session_id
+function! s:make_new_buffer()
+    let s:buffer_id = 1
+    while 1
+        let buffer_name = s:buffer_label . '_' . s:buffer_id
+        if !bufexists(buffer_name)
+            break
+        endif
+        let s:buffer_id += 1
+    endwhile
+    let create = 1
+    return bufnr(buffer_name, create)
 endfunction
 
 function! s:prompt_for_vocabulary_file()
@@ -75,18 +82,10 @@ function! s:trim(s)
     return substitute(substitute(a:s, '\v^\s+', '', ''), '\v\s+$', '', '')
 endfunction
 
-function! s:move_to_buffer(buffer_name)
-    let buffer_is_new = ! bufexists(a:buffer_name)
-    let win = bufwinnr(a:buffer_name)
-    if win == -1
-        execute 'vsplit ' . a:buffer_name
-    else
-        execute win . 'wincmd w'
-    endif
-    if buffer_is_new
-        call s:set_buffer_options()
-        call s:set_up_mappings()
-    endif
+function! s:move_to_buffer(buffer)
+    execute 'vertical sbuffer' a:buffer
+    call s:set_buffer_options()
+    call s:set_up_mappings()
 endfunction
 
 function! s:set_buffer_options()
