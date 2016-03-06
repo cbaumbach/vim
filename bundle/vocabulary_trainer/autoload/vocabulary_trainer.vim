@@ -11,8 +11,8 @@ endfunction
 
 function! s:set_up_buffer()
     let buffer_name = s:make_buffer_name()
+    call s:move_to_vocabulary_trainer_buffer(buffer_name)
     let vocabulary_file = s:prompt_for_vocabulary_file()
-    call s:move_to_vocabulary_trainer_buffer()
     call s:add_title(vocabulary_file)
     call s:determine_direction_of_translation()
     let b:vocabulary_list = s:read_vocabulary_list(vocabulary_file)
@@ -74,12 +74,11 @@ function! s:trim(s)
     return substitute(substitute(a:s, '\v^\s+', '', ''), '\v\s+$', '', '')
 endfunction
 
-function! s:move_to_vocabulary_trainer_buffer()
-    let buffer_name = s:buffer_label . '_' . s:number_of_sessions
-    let buffer_is_new = ! bufexists(buffer_name)
-    let win = bufwinnr(buffer_name)
+function! s:move_to_vocabulary_trainer_buffer(buffer_name)
+    let buffer_is_new = ! bufexists(a:buffer_name)
+    let win = bufwinnr(a:buffer_name)
     if win == -1
-        execute 'vsplit ' . buffer_name
+        execute 'vsplit ' . a:buffer_name
     else
         execute win . 'wincmd w'
     endif
