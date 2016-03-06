@@ -10,12 +10,17 @@ endfunction
 
 function! s:set_up_buffer()
     let s:number_of_sessions += 1
+    let buffer_name = s:make_buffer_name()
     let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:move_to_vocabulary_trainer_buffer()
     call s:add_title(vocabulary_file)
     call s:determine_direction_of_translation()
     let b:vocabulary_list = s:read_vocabulary_list(vocabulary_file)
     let b:current_entry = 0
+endfunction
+
+function! s:make_buffer_name()
+    return s:buffer_label . '_' . s:number_of_sessions
 endfunction
 
 function! s:prompt_for_vocabulary_file()
