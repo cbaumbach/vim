@@ -1,4 +1,4 @@
-let s:answer_prefix = '> '
+let s:prompt = '>'
 let s:buffer_width = 20
 
 function! vocabulary_trainer#TrainVocabulary()
@@ -39,7 +39,7 @@ function! s:determine_direction_of_translation()
         \ "Direction of translation?\n" .
         \ "[1] LEFT column to RIGHT column\n" .
         \ "[2] RIGHT column to LEFT column\n" .
-        \ s:answer_prefix, '1')) ==? '1'
+        \ s:prompt . ' ', '1')) ==? '1'
     redraw
     if right_to_left
         let b:question = 0
@@ -123,7 +123,9 @@ function! s:is_correct()
 endfunction
 
 function! s:find_answer(line)
-    return s:trim(substitute(a:line, '\v^[>\s]*', '', ''))
+    let leading_prompt = '\v^' . '[' . s:prompt . ']'
+    let line_without_leading_prompt = substitute(a:line, leading_prompt, '', '')
+    return s:trim(line_without_leading_prompt)
 endfunction!
 
 function! s:find_correct_answer()
