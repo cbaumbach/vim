@@ -14,7 +14,7 @@ function! vocabulary_trainer#TrainVocabulary()
 endfunction
 
 function! s:determine_direction_of_translation()
-    let right_to_left = s:strip_space(input(
+    let right_to_left = s:trim(input(
         \ "Direction of translation?\n" .
         \ "[1] LEFT column to RIGHT column\n" .
         \ "[2] RIGHT column to LEFT column\n" .
@@ -46,13 +46,13 @@ function! s:new_entry(line)
     endif
     let pair = split(a:line, '\t')
     if len(pair) == 2
-        return [s:strip_space(pair[0]), s:strip_space(pair[1])]
+        return [s:trim(pair[0]), s:trim(pair[1])]
     else
         return []
     endif
 endfunction
 
-function! s:strip_space(s)
+function! s:trim(s)
     return substitute(substitute(a:s, '\v^\s+', '', ''), '\v\s+$', '', '')
 endfunction
 
@@ -88,7 +88,7 @@ endfunction
 
 function! s:is_correct()
     let this_line = getline(line('.'))
-    let answer = s:strip_space(substitute(this_line, '\v^[>\s]*', '', ''))
+    let answer = s:trim(substitute(this_line, '\v^[>\s]*', '', ''))
     let correct_answer = b:vocabulary_list[b:current_entry][b:answer]
     if answer ==? correct_answer
         execute "normal! A +\<esc>"
@@ -99,15 +99,15 @@ function! s:is_correct()
     call s:prompt_for_translation(b:current_entry)
 endfunction
 
-" ==== strip_space ===================================================
+" ==== trim ==========================================================
 
-call Testthat("strip_space works",
-    \ s:strip_space('') == '',
-    \ s:strip_space(' ') == '',
-    \ s:strip_space('  a') == 'a',
-    \ s:strip_space('a  ') == 'a',
-    \ s:strip_space('  a  ') == 'a',
-    \ s:strip_space('  a b  ') == 'a b')
+call Testthat("trim works",
+    \ s:trim('') == '',
+    \ s:trim(' ') == '',
+    \ s:trim('  a') == 'a',
+    \ s:trim('a  ') == 'a',
+    \ s:trim('  a  ') == 'a',
+    \ s:trim('  a b  ') == 'a b')
 
 " ==== new_entry =====================================================
 
