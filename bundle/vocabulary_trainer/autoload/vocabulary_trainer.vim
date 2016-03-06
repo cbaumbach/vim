@@ -36,21 +36,6 @@ function! s:parse_arguments(args)
     return d
 endfunction
 
-function! vocabulary_trainer#TrainVocabulary()
-    call s:set_up_buffer()
-    call s:prompt_for_translation()
-endfunction
-
-function! s:set_up_buffer()
-    let buffer = s:make_new_buffer()
-    call s:move_to_buffer(buffer)
-    redraw
-    let vocabulary_file = s:prompt_for_vocabulary_file()
-    call s:determine_direction_of_translation()
-    let b:vocabulary_list = s:read_vocabulary_list(vocabulary_file)
-    let b:current_entry = 0
-endfunction
-
 function! s:make_new_buffer()
     let buffer_name_prefix = 'VOCABULARY_TRAINER'
     let s:buffer_id = 1
@@ -67,22 +52,6 @@ endfunction
 
 function! s:prompt_for_vocabulary_file()
     return expand(input('File: ', '', 'file'))
-endfunction
-
-function! s:determine_direction_of_translation()
-    let right_to_left = s:trim(input(
-        \ "Direction of translation?\n" .
-        \ "[1] LEFT column to RIGHT column\n" .
-        \ "[2] RIGHT column to LEFT column\n" .
-        \ s:prompt . ' ', '1')) ==? '1'
-    redraw
-    if right_to_left
-        let b:question = 0
-        let b:answer = 1
-    else
-        let b:question = 1
-        let b:answer = 0
-    endif
 endfunction
 
 function! s:read_vocabulary_list(file)
