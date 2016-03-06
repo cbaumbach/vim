@@ -1,1 +1,1 @@
-command! -nargs=* TrainVocabulary call vocabulary_trainer#TrainVocabulary()
+command! TrainVocabulary call vocabulary_trainer#TrainVocabulary()
