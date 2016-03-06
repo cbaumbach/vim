@@ -14,11 +14,11 @@ function! vocabulary_trainer#TrainVocabulary()
 endfunction
 
 function! s:determine_direction_of_translation()
-    let right_to_left = input(
+    let right_to_left = s:strip_space(input(
         \ "Direction of translation?\n" .
         \ "[1] LEFT column to RIGHT column\n" .
         \ "[2] RIGHT column to LEFT column\n" .
-        \ s:answer_prefix, '1')
+        \ s:answer_prefix, '1'))
     redraw
     if right_to_left ==? '1'
         let b:question = 0
