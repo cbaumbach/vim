@@ -73,9 +73,13 @@ endfunction
 function! s:set_up_vocabulary_buffer(filename)
     setlocal buftype=nofile
     setlocal filetype=vocabulary_trainer
+    call s:set_up_mappings()
+    call append(0, 'File: ' . a:filename)
+endfunction
+
+function! s:set_up_mappings()
     inoremap <buffer> <cr> <esc>:call <sid>is_correct()<cr>
     nnoremap <buffer> <silent> q :bwipeout<cr>
-    call append(0, 'File: ' . a:filename)
 endfunction
 
 function! s:prompt_for_translation(entry)
