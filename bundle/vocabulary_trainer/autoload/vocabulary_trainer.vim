@@ -80,14 +80,19 @@ endfunction
 
 function! s:prompt_for_translation(entry)
     if a:entry >= len(b:vocabulary_list)
-        call append(line('$'), ['', 'Done.'])
-        normal! gg
+        call s:mark_session_as_finished()
         return
     endif
     let question = b:vocabulary_list[a:entry][b:question]
-    call append(line('$'), s:question_prefix . question)
+    let prompt = s:question_prefix . question
+    call append(line('$'), prompt)
     execute "normal! Go> \<esc>"
     startinsert!
+endfunction
+
+function! s:mark_session_as_finished()
+    call append(line('$'), ['', 'Done.'])
+    normal! gg
 endfunction
 
 function! s:is_correct()
