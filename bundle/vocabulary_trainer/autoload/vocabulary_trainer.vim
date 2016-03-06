@@ -12,6 +12,7 @@ endfunction
 function! s:set_up_buffer()
     let buffer_name = s:make_buffer_name()
     call s:move_to_vocabulary_trainer_buffer(buffer_name)
+    redraw
     let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:add_title(vocabulary_file)
     call s:determine_direction_of_translation()
