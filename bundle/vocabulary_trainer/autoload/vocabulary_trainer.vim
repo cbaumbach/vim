@@ -1,6 +1,7 @@
 let s:buffer_label = 'VOCABULARY_TRAINER'
 let s:question_prefix = '? '
 let s:answer_prefix = '> '
+let s:buffer_width = 20
 
 function! vocabulary_trainer#TrainVocabulary()
     call s:set_up_buffer()
@@ -84,6 +85,7 @@ endfunction
 
 function! s:move_to_buffer(buffer)
     execute 'vertical sbuffer' a:buffer
+    execute 'vertical resize' s:buffer_width
     call s:set_buffer_options()
     call s:set_up_mappings()
 endfunction
