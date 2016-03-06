@@ -4,12 +4,12 @@ let s:question_prefix = '? '
 let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
+    let s:number_of_sessions += 1
     call s:set_up_buffer()
     call s:prompt_for_translation()
 endfunction
 
 function! s:set_up_buffer()
-    let s:number_of_sessions += 1
     let buffer_name = s:make_buffer_name()
     let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:move_to_vocabulary_trainer_buffer()
