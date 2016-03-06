@@ -1,11 +1,16 @@
-let s:question = 0
-let s:answer = 1
+let s:vocabulary_trainer_buffer = 'VOCABULARY_TRAINER'
+let s:number_of_sessions = 0
+let s:question_prefix = '? '
+let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
+    let s:number_of_sessions += 1
     let file = expand(input('File: ', '', 'file'))
+    call s:move_to_vocabulary_trainer_buffer(file)
     call s:determine_direction_of_translation()
-    let vocabulary_list = s:read_vocabulary(file)
-    call s:query_user(vocabulary_list)
+    let b:vocabulary_list = s:read_vocabulary(file)
+    let b:current_entry = 0
+    call s:prompt_for_translation(b:current_entry)
 endfunction
 
 function! s:determine_direction_of_translation()
@@ -13,14 +18,14 @@ function! s:determine_direction_of_translation()
         \ "Direction of translation?\n" .
         \ "[1] LEFT column to RIGHT column\n" .
         \ "[2] RIGHT column to LEFT column\n" .
-        \ '> ', '1')
+        \ s:answer_prefix, '1')
     redraw
     if right_to_left ==? '1'
-        let s:question = 0
-        let s:answer = 1
+        let b:question = 0
+        let b:answer = 1
     else
-        let s:question = 1
-        let s:answer = 0
+        let b:question = 1
+        let b:answer = 0
     endif
 endfunction
 
@@ -51,31 +56,48 @@ function! s:strip_space(s)
     return substitute(substitute(a:s, '\v^\s+', '', ''), '\v\s+$', '', '')
 endfunction
 
-function! s:query_user(vocabulary_list)
-    for entry in a:vocabulary_list
-        let answer = s:prompt(entry)
-        if s:is_correct(answer, entry)
-            echohl CorrectAnswer | echo answer | echohl None
-        else
-            echohl WrongAnswer | echo answer | echohl None
-        endif
-    endfor
+function! s:move_to_vocabulary_trainer_buffer(filename)
+    let buffer_name = s:vocabulary_trainer_buffer . '_' . s:number_of_sessions
+    let buffer_is_new = ! bufexists(buffer_name)
+    let win = bufwinnr(buffer_name)
+    if win == -1
+        execute 'vsplit ' . buffer_name
+    else
+        execute win . 'wincmd w'
+    endif
+    if buffer_is_new
+        setlocal buftype=nofile
+        setlocal filetype=vocabulary_trainer
+        inoremap <buffer> <cr> <esc>:call <sid>is_correct()<cr>
+        nnoremap <buffer> <silent> q :bwipeout<cr>
+        call append(0, 'File: ' . a:filename)
+    endif
 endfunction
 
-function! s:prompt(entry)
-    return s:strip_space(input(s:prompt_string(a:entry)))
+function! s:prompt_for_translation(entry)
+    if a:entry >= len(b:vocabulary_list)
+        call append(line('$'), ['', 'Done.'])
+        normal! gg
+        return
+    endif
+    let question = b:vocabulary_list[a:entry][b:question]
+    call append(line('$'), s:question_prefix . question)
+    execute "normal! Go> \<esc>"
+    startinsert!
 endfunction
 
-function! s:prompt_string(entry)
-    return '> ' . a:entry[s:question] . "\n"
+function! s:is_correct()
+    let this_line = getline(line('.'))
+    let answer = s:strip_space(substitute(this_line, '\v^[>\s]*', '', ''))
+    let correct_answer = b:vocabulary_list[b:current_entry][b:answer]
+    if answer ==? correct_answer
+        execute "normal! A +\<esc>"
+    else
+        execute "normal! A -\<esc>"
+    endif
+    let b:current_entry += 1
+    call s:prompt_for_translation(b:current_entry)
 endfunction
-
-function! s:is_correct(answer, entry)
-    return a:answer ==? a:entry[s:answer]
-endfunction
-
-hi CorrectAnswer ctermfg=Green ctermbg=Black guifg=Green guibg=Black
-hi WrongAnswer ctermfg=Red ctermbg=Black guifg=Red guibg=Black
 
 " ==== strip_space ===================================================
 
@@ -95,15 +117,3 @@ call Testthat("new_entry works",
     \ s:new_entry("\tb") == [],
     \ s:new_entry("a\tb") == ['a', 'b'],
     \ s:new_entry("  a  \t  b  ") == ['a', 'b'])
-
-" ==== prompt_string =================================================
-
-call Testthat("prompt_string works",
-    \ s:prompt_string(['a', '']) == "> a\n")
-
-" ==== is_correct ====================================================
-
-call Testthat("is_correct works",
-    \ s:is_correct('a', ['', 'a']),
-    \ s:is_correct('', ['', '']),
-    \ !s:is_correct('a', ['', 'b']))
