@@ -4,6 +4,11 @@ let s:question_prefix = '? '
 let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
+    call s:set_up_buffer()
+    call s:prompt_for_translation()
+endfunction
+
+function! s:set_up_buffer()
     let s:number_of_sessions += 1
     let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:move_to_vocabulary_trainer_buffer()
@@ -11,7 +16,6 @@ function! vocabulary_trainer#TrainVocabulary()
     call s:determine_direction_of_translation()
     let b:vocabulary_list = s:read_vocabulary_list(vocabulary_file)
     let b:current_entry = 0
-    call s:prompt_for_translation(b:current_entry)
 endfunction
 
 function! s:prompt_for_vocabulary_file()
@@ -90,12 +94,12 @@ function! s:set_up_mappings()
     nnoremap <buffer> <silent> q :bwipeout<cr>
 endfunction
 
-function! s:prompt_for_translation(entry)
-    if a:entry >= len(b:vocabulary_list)
+function! s:prompt_for_translation()
+    if b:current_entry >= len(b:vocabulary_list)
         call s:mark_session_as_finished()
         return
     endif
-    let question = b:vocabulary_list[a:entry][b:question]
+    let question = b:vocabulary_list[b:current_entry][b:question]
     let prompt = s:question_prefix . question
     call append(line('$'), prompt)
     execute "normal! Go> \<esc>"
@@ -113,7 +117,7 @@ function! s:is_correct()
     let marker = (answer ==? correct_answer) ? '+' : '-'
     execute 'normal! A ' . marker . "\<esc>"
     let b:current_entry += 1
-    call s:prompt_for_translation(b:current_entry)
+    call s:prompt_for_translation()
 endfunction
 
 function! s:find_answer(line)
