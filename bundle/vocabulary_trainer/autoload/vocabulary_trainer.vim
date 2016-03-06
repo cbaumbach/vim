@@ -88,7 +88,8 @@ endfunction
 
 function! s:is_correct()
     let answer = s:find_answer(getline(line('.')))
-    let correct_answer = b:vocabulary_list[b:current_entry][b:answer]
+    let correct_answer = s:find_correct_answer()
+    " let correct_answer = b:vocabulary_list[b:current_entry][b:answer]
     if answer ==? correct_answer
         execute "normal! A +\<esc>"
     else
@@ -101,6 +102,10 @@ endfunction
 function! s:find_answer(line)
     return s:trim(substitute(a:line, '\v^[>\s]*', '', ''))
 endfunction!
+
+function! s:find_correct_answer()
+    return b:vocabulary_list[b:current_entry][b:answer]
+endfunction
 
 " ==== trim ==========================================================
 
