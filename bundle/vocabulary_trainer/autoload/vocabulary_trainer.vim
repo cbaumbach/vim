@@ -11,7 +11,7 @@ endfunction
 
 function! s:set_up_buffer()
     let buffer_name = s:make_buffer_name()
-    call s:move_to_vocabulary_trainer_buffer(buffer_name)
+    call s:move_to_buffer(buffer_name)
     redraw
     let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:add_title(vocabulary_file)
@@ -75,7 +75,7 @@ function! s:trim(s)
     return substitute(substitute(a:s, '\v^\s+', '', ''), '\v\s+$', '', '')
 endfunction
 
-function! s:move_to_vocabulary_trainer_buffer(buffer_name)
+function! s:move_to_buffer(buffer_name)
     let buffer_is_new = ! bufexists(a:buffer_name)
     let win = bufwinnr(a:buffer_name)
     if win == -1
