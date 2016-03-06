@@ -13,7 +13,6 @@ function! s:set_up_buffer()
     call s:move_to_buffer(buffer)
     redraw
     let vocabulary_file = s:prompt_for_vocabulary_file()
-    call s:add_title(vocabulary_file)
     call s:determine_direction_of_translation()
     let b:vocabulary_list = s:read_vocabulary_list(vocabulary_file)
     let b:current_entry = 0
@@ -34,11 +33,6 @@ endfunction
 
 function! s:prompt_for_vocabulary_file()
     return expand(input('File: ', '', 'file'))
-endfunction
-
-function! s:add_title(filename)
-    let title = 'File: ' . a:filename
-    call append(0, title)
 endfunction
 
 function! s:determine_direction_of_translation()
@@ -109,13 +103,16 @@ function! s:prompt_for_translation()
     let question = b:vocabulary_list[b:current_entry][b:question]
     let prompt = s:question_prefix . question
     call append(line('$'), prompt)
+    if getline(1) =~? '\v^\s*$'
+        execute '1delete'
+    endif
     execute "normal! Go> \<esc>"
     startinsert!
 endfunction
 
 function! s:mark_session_as_finished()
     call append(line('$'), ['', 'Done.'])
-    normal! gg
+    normal! G$
 endfunction
 
 function! s:is_correct()
