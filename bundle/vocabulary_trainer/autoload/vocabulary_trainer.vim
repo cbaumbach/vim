@@ -1,4 +1,4 @@
-let s:vocabulary_trainer_buffer = 'VOCABULARY_TRAINER'
+let s:buffer_label = 'VOCABULARY_TRAINER'
 let s:number_of_sessions = 0
 let s:question_prefix = '? '
 let s:answer_prefix = '> '
@@ -70,7 +70,7 @@ function! s:trim(s)
 endfunction
 
 function! s:move_to_vocabulary_trainer_buffer()
-    let buffer_name = s:vocabulary_trainer_buffer . '_' . s:number_of_sessions
+    let buffer_name = s:buffer_label . '_' . s:number_of_sessions
     let buffer_is_new = ! bufexists(buffer_name)
     let win = bufwinnr(buffer_name)
     if win == -1
