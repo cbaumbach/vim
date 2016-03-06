@@ -1,4 +1,3 @@
-let s:buffer_label = 'VOCABULARY_TRAINER'
 let s:question_prefix = '? '
 let s:answer_prefix = '> '
 let s:buffer_width = 20
@@ -19,9 +18,10 @@ function! s:set_up_buffer()
 endfunction
 
 function! s:make_new_buffer()
+    let buffer_name_prefix = 'VOCABULARY_TRAINER'
     let s:buffer_id = 1
     while 1
-        let buffer_name = s:buffer_label . '_' . s:buffer_id
+        let buffer_name = buffer_name_prefix . '_' . s:buffer_id
         if !bufexists(buffer_name)
             break
         endif
