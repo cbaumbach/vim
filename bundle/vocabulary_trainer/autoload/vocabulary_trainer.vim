@@ -8,7 +8,7 @@ function! vocabulary_trainer#TrainVocabulary()
     let file = expand(input('File: ', '', 'file'))
     call s:move_to_vocabulary_trainer_buffer(file)
     call s:determine_direction_of_translation()
-    let b:vocabulary_list = s:read_vocabulary(file)
+    let b:vocabulary_list = s:read_vocabulary_list(file)
     let b:current_entry = 0
     call s:prompt_for_translation(b:current_entry)
 endfunction
@@ -29,7 +29,7 @@ function! s:determine_direction_of_translation()
     endif
 endfunction
 
-function! s:read_vocabulary(file)
+function! s:read_vocabulary_list(file)
     let vocabulary_list = []
     for line in readfile(a:file)
         let entry = s:new_entry(line)
