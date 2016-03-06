@@ -1,10 +1,10 @@
 let s:buffer_label = 'VOCABULARY_TRAINER'
-let s:number_of_sessions = 0
+let s:session_id = 0
 let s:question_prefix = '? '
 let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
-    let s:number_of_sessions += 1
+    let s:session_id += 1
     call s:set_up_buffer()
     call s:prompt_for_translation()
 endfunction
@@ -21,7 +21,7 @@ function! s:set_up_buffer()
 endfunction
 
 function! s:make_buffer_name()
-    return s:buffer_label . '_' . s:number_of_sessions
+    return s:buffer_label . '_' . s:session_id
 endfunction
 
 function! s:prompt_for_vocabulary_file()
