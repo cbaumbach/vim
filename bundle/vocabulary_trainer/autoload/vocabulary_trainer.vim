@@ -5,11 +5,11 @@ let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
     let s:number_of_sessions += 1
-    let file = s:prompt_for_vocabulary_file()
+    let vocabulary_file = s:prompt_for_vocabulary_file()
     call s:move_to_vocabulary_trainer_buffer()
-    call s:add_title(file)
+    call s:add_title(vocabulary_file)
     call s:determine_direction_of_translation()
-    let b:vocabulary_list = s:read_vocabulary_list(file)
+    let b:vocabulary_list = s:read_vocabulary_list(vocabulary_file)
     let b:current_entry = 0
     call s:prompt_for_translation(b:current_entry)
 endfunction
