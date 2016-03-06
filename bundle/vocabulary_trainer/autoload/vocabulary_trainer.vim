@@ -5,12 +5,21 @@ let s:answer_prefix = '> '
 
 function! vocabulary_trainer#TrainVocabulary()
     let s:number_of_sessions += 1
-    let file = expand(input('File: ', '', 'file'))
-    call s:move_to_vocabulary_trainer_buffer(file)
+    let file = s:prompt_for_vocabulary_file()
+    call s:move_to_vocabulary_trainer_buffer()
+    call s:add_title(file)
     call s:determine_direction_of_translation()
     let b:vocabulary_list = s:read_vocabulary_list(file)
     let b:current_entry = 0
     call s:prompt_for_translation(b:current_entry)
+endfunction
+
+function! s:prompt_for_vocabulary_file()
+    return expand(input('File: ', '', 'file'))
+endfunction
+
+function! s:add_title(filename)
+    call append(0, 'File: ' . a:filename)
 endfunction
 
 function! s:determine_direction_of_translation()
@@ -56,7 +65,7 @@ function! s:trim(s)
     return substitute(substitute(a:s, '\v^\s+', '', ''), '\v\s+$', '', '')
 endfunction
 
-function! s:move_to_vocabulary_trainer_buffer(filename)
+function! s:move_to_vocabulary_trainer_buffer()
     let buffer_name = s:vocabulary_trainer_buffer . '_' . s:number_of_sessions
     let buffer_is_new = ! bufexists(buffer_name)
     let win = bufwinnr(buffer_name)
@@ -66,15 +75,14 @@ function! s:move_to_vocabulary_trainer_buffer(filename)
         execute win . 'wincmd w'
     endif
     if buffer_is_new
-        call s:set_up_vocabulary_buffer(a:filename)
+        call s:set_up_vocabulary_buffer()
     endif
 endfunction
 
-function! s:set_up_vocabulary_buffer(filename)
+function! s:set_up_vocabulary_buffer()
     setlocal buftype=nofile
     setlocal filetype=vocabulary_trainer
     call s:set_up_mappings()
-    call append(0, 'File: ' . a:filename)
 endfunction
 
 function! s:set_up_mappings()
