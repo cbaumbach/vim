@@ -20,7 +20,7 @@ set encoding=utf-8
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=0
-set formatoptions=roqlct
+set formatoptions=roql
 set hidden
 set hlsearch
 nohlsearch  " turn off highlighting turned on by 'set hlsearch'
