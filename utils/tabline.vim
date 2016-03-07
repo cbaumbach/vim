@@ -33,7 +33,11 @@ function! Map(fn, list)
 endfunction
 
 function! s:tab_label(tab)
-    return bufname(tabpagebuflist(a:tab)[tabpagewinnr(a:tab) - 1])
+    let buffer_name = bufname(tabpagebuflist(a:tab)[tabpagewinnr(a:tab) - 1])
+    if buffer_name == ''
+        let buffer_name = '[No Name]'
+    endif
+    return buffer_name
 endfunction
 
 function! Sum(list)
