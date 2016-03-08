@@ -189,6 +189,9 @@ nnoremap <leader>L :setlocal list!<cr>
 " Change to directory of current file.
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 
+" Select buffer from list.
+nnoremap <leader>b :buffers!<cr>:buffer<space>
+
 " Display tabular data in a readable way.
 command! -nargs=* PrettyTable .,$!column -t -s'<tab>'
 " }}}
