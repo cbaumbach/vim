@@ -206,7 +206,7 @@ if has('autocmd')
 
     augroup filetype_vim
         autocmd!
-        autocmd FileType vim setlocal foldmethod=marker
+        autocmd FileType vim setlocal foldmethod=marker foldlevelstart=0
     augroup END
 
     augroup filetype_c
