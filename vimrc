@@ -19,7 +19,7 @@ set directory=$HOME/tmp//
 set encoding=utf-8
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
-set foldlevelstart=0
+set foldlevelstart=99
 set formatoptions=roql
 set hidden
 set hlsearch
