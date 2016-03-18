@@ -2,6 +2,7 @@
 
 setlocal foldmethod=expr
 setlocal foldexpr=GetRFold(v:lnum)
+setlocal foldlevelstart=99
 
 function! GetRFold(lnum)
     let this_line = getline(a:lnum)
