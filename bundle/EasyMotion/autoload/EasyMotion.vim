@@ -1070,7 +1070,9 @@ function! s:PromptUser(groups) "{{{
         redraw "}}}
 
         " Get target character {{{
-        call s:Prompt('Target key')
+        if g:EasyMotion_show_prompt
+            call s:Prompt('Target key')
+        endif
         let char = s:GetChar()
         "}}}
 
