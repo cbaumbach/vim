@@ -229,7 +229,6 @@ if has('autocmd')
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
         autocmd FileType c,cpp setlocal formatoptions-=t
-        autocmd FileType c,cpp setlocal foldmethod=syntax
     augroup END
 
 endif
