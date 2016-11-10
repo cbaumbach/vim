@@ -15,6 +15,9 @@ let g:preferred_tab_width = 4
 set autoindent
 set backspace=indent,eol,start
 set cmdwinheight=1  " see also help for cmdwin
+if !isdirectory($HOME . '/tmp')
+    call mkdir($HOME . '/tmp')
+endif
 set directory=$HOME/tmp//
 set encoding=utf-8
 set expandtab
