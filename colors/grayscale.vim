@@ -13,5 +13,7 @@ hi StatusLine ctermfg=Black    ctermbg=White    guifg=Black    guibg=White     c
 hi Emphasis ctermfg=White    ctermbg=DarkGray guifg=White    guibg=DarkGray
 hi EasyMotionTarget ctermfg=Green     ctermbg=NONE guifg=Green     guibg=NONE
 hi EasyMotionShade  ctermfg=DarkGray  ctermbg=NONE guifg=DarkGray  guibg=NONE
+hi ModeMsg cterm=NONE gui=NONE
+hi MoreMsg cterm=NONE gui=NONE
 
 runtime colors/link_groups.vim
