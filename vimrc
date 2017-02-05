@@ -20,6 +20,8 @@ if !isdirectory($HOME . '/tmp')
 endif
 set directory=$HOME/tmp//
 set encoding=utf-8
+" Prepend a pattern that matches unity failure messages.
+let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=99
