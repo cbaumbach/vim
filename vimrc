@@ -8,6 +8,7 @@ colorscheme grayscale
 runtime utils/testing.vim
 execute pathogen#infect()
 runtime utils/tmux.vim
+runtime! ftplugin/man.vim
 " }}}
 " {{{ Options
 let g:preferred_tab_width = 4
