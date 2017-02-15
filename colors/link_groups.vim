@@ -10,7 +10,6 @@ hi! link Folded      Discreet
 hi! link Function    Normal
 hi! link HelpNote    Contrast
 hi! link Identifier  Normal
-hi! link IncSearch   Contrast
 hi! link LineNr      Discreet
 hi! link MatchParen  Discreet
 hi! link NonText     Discreet

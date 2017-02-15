@@ -8,6 +8,7 @@ let g:colors_name = 'grayscale'
 hi Normal     ctermfg=White    ctermbg=Black    guifg=White    guibg=Black
 hi Discreet   ctermfg=DarkGray ctermbg=Black    guifg=DarkGray guibg=Black
 hi Contrast   ctermfg=Black    ctermbg=White    guifg=Black    guibg=White
+hi IncSearch  ctermfg=Magenta                   guifg=Magenta
 hi Inactive   ctermfg=Black    ctermbg=DarkGray guifg=Black    guibg=DarkGray
 hi StatusLine ctermfg=Black    ctermbg=White    guifg=Black    guibg=White     cterm=NONE gui=NONE
 hi Emphasis ctermfg=White    ctermbg=DarkGray guifg=White    guibg=DarkGray
