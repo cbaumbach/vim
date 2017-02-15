@@ -127,6 +127,9 @@ function! <SID>Show_highlighting_group()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 " }}}
+" {{{ Show colors for all highlight groups.
+nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
+" }}}
 " {{{ Close current window/tab (in that order).
 nnoremap <silent> <c-w>c :call Close_it()<cr>
 function! Close_it()
