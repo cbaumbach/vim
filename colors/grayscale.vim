@@ -17,4 +17,30 @@ hi EasyMotionShade  ctermfg=DarkGray  ctermbg=NONE guifg=DarkGray  guibg=NONE
 hi ModeMsg cterm=NONE gui=NONE
 hi MoreMsg cterm=NONE gui=NONE
 
-runtime colors/link_groups.vim
+hi! link Comment     Discreet
+hi! link Constant    Normal
+hi! link DiffAdd     Contrast
+hi! link DiffChange  Contrast
+hi! link DiffDelete  Normal
+hi! link DiffText    Emphasis
+hi! link Error       Contrast
+hi! link FoldColumn  Normal
+hi! link Folded      Discreet
+hi! link Function    Normal
+hi! link HelpNote    Contrast
+hi! link Identifier  Normal
+hi! link LineNr      Discreet
+hi! link MatchParen  Discreet
+hi! link NonText     Discreet
+hi! link PreProc     Discreet
+hi! link Search      Contrast
+hi! link Special     Normal
+hi! link SpecialKey  Discreet
+hi! link Statement   Normal
+hi! link String      Discreet
+hi! link TabLineFill Normal
+hi! link TabLine     Inactive
+hi! link TabLineSel  Contrast
+hi! link Type        Normal
+hi! link VimOption   Normal
+hi! link Visual      Contrast
