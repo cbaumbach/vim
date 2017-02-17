@@ -175,6 +175,10 @@ nnoremap <leader>ee :tabedit $MYVIMRC<cr>
 " Source configuration file.
 nnoremap <leader>ss :source $MYVIMRC<cr>
 
+" Toggle modifiable and read-only flags.
+nnoremap <silent> <leader>M :setlocal modifiable!<cr>
+nnoremap <silent> <leader>R :setlocal readonly!<cr>
+
 " Trigger reloading of filetype-specific files.
 nnoremap rr :let &l:filetype = &l:filetype<cr>
 
