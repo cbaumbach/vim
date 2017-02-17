@@ -19,7 +19,6 @@ hi Visual  ctermfg=011 ctermbg=022 cterm=none
 " Special cases
 hi StatusLineNC ctermfg=000 ctermbg=022 cterm=none
 hi String       ctermfg=045 ctermbg=000 cterm=none
-hi TabLine      ctermfg=003 ctermbg=000 cterm=none
 hi VertSplit    ctermfg=022 ctermbg=022 cterm=none
 
 " EasyMotion
