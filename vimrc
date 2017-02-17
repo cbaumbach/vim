@@ -130,12 +130,6 @@ endfunction
 " {{{ Show colors for all highlight groups.
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
 " }}}
-" {{{ Close current window/tab (in that order).
-nnoremap <silent> <c-w>c :call Close_it()<cr>
-function! Close_it()
-    if tabpagenr('$') == 1 | q | else | tabclose | endif
-endfunction
-" }}}
 " {{{ Produce landscape printout.
 command! -nargs=* LandscapeHardcopy call Landscape_hardcopy()
 function! Landscape_hardcopy()
