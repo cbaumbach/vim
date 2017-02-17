@@ -175,9 +175,6 @@ nnoremap <leader>ee :tabedit $MYVIMRC<cr>
 " Source configuration file.
 nnoremap <leader>ss :source $MYVIMRC<cr>
 
-" Source current file.
-nnoremap ss :write<cr>:source %<cr>
-
 " Trigger reloading of filetype-specific files.
 nnoremap rr :let &l:filetype = &l:filetype<cr>
 
@@ -226,6 +223,8 @@ if has('autocmd')
     augroup filetype_vim
         autocmd!
         autocmd FileType vim setlocal foldmethod=marker foldlevelstart=0
+        " Source current vim script.
+        autocmd FileType vim nnoremap <buffer> ss :write<cr>:source %<cr>
     augroup END
 
     augroup filetype_c
