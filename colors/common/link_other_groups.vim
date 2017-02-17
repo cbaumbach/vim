@@ -19,9 +19,11 @@ hi! link Special      Normal
 hi! link SpecialKey   Comment
 hi! link Statement    Normal
 hi! link StatusLine   Visual
+hi! link StatusLineNC Window
 hi! link TabLine      Search
 hi! link TabLineFill  Normal
 hi! link TabLineSel   Visual
 hi! link Type         Normal
+hi! link VertSplit    Window
 hi! link VimOption    Normal
 hi! link WarningMsg   Search

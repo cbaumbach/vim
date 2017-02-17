@@ -10,16 +10,12 @@ if exists('syntax_on')
 endif
 let g:colors_name = 'blue'
 
-" Widely applicable definitions
 hi Comment ctermfg=012 ctermbg=000 cterm=none
 hi Normal  ctermfg=045 ctermbg=000 cterm=none
 hi Search  ctermfg=011 ctermbg=000 cterm=none
+hi String  ctermfg=082 ctermbg=000 cterm=none
 hi Visual  ctermfg=011 ctermbg=025 cterm=none
-
-" Special cases
-hi StatusLineNC ctermfg=003 ctermbg=025 cterm=none
-hi String       ctermfg=082 ctermbg=000 cterm=none
-hi VertSplit    ctermfg=025 ctermbg=025 cterm=none
+hi Window  ctermfg=013 ctermbg=000 cterm=none
 
 " EasyMotion
 hi EasyMotionShade  ctermfg=008
