@@ -32,8 +32,12 @@ function! Map(fn, list)
     return new_list
 endfunction
 
+function! s:basename(path)
+    return substitute(a:path, '.*/', '', '')
+endfunction
+
 function! s:tab_label(tab)
-    let buffer_name = bufname(tabpagebuflist(a:tab)[tabpagewinnr(a:tab) - 1])
+    let buffer_name = s:basename(bufname(tabpagebuflist(a:tab)[tabpagewinnr(a:tab) - 1]))
     if buffer_name == ''
         let buffer_name = '[No Name]'
     endif
