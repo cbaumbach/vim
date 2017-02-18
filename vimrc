@@ -53,6 +53,9 @@ set nowrap
 let mapleader = '-'
 let localmapleader = '\'
 
+" Alternative to esc, c-[, and c-c.
+inoremap jk <esc>
+
 " {{{ EasyMotion
 " Don't install default mappings.
 let g:EasyMotion_do_mapping = 0
@@ -115,10 +118,6 @@ function! Remove_empty_lines_at_end_of_file()
     endif
 endfunction
 " }}}
-
-" Alternatives to <esc> for getting back into normal mode:
-" <c-[> or <c-c> or jk.
-inoremap jk <esc>
 
 function! Update_statusline()
     " No-op: set variable to its current value
