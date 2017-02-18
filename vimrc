@@ -92,32 +92,6 @@ function! Toggle_auto_wrapping()
     endtry
 endfunction
 " }}}
-" {{{ Unify tab settings.
-command! -nargs=* SetTabs call Set_tabs()
-function! Set_tabs()
-    let ts = 1 * input('set tabstop = softtabstop = shiftwidth = ')
-    if ts > 0
-        let &l:tabstop     = ts
-        let &l:softtabstop = ts
-        let &l:shiftwidth  = ts
-    endif
-    redraw                     " clear echo area
-    call Summarize_tabs()
-endfunction
-
-function! Summarize_tabs()
-    try
-        echohl ModeMsg
-        echon 'tabstop='     . &l:tabstop     . ' '
-        echon 'softtabstop=' . &l:softtabstop . ' '
-        echon 'shiftwidth='  . &l:shiftwidth  . ' '
-        if !&l:expandtab | echon 'no' | endif
-        echon 'expandtab'
-    finally
-        echohl None
-    endtry
-endfunction
-" }}}
 " {{{ Show highlighting groups for word under cursor.
 nnoremap <leader>= :call <SID>Show_highlighting_group()<cr>
 function! <SID>Show_highlighting_group()
