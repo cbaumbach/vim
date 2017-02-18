@@ -105,8 +105,8 @@ endfunction
 " Show colors for all highlight groups.
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
 
-" Trigger reloading of filetype-specific files.
-nnoremap rr :let &l:filetype = &l:filetype<cr>
+" Reload filetype-specific files.
+nnoremap <leader>r :let &l:filetype = &l:filetype<cr>
 
 " Toggle paste mode.
 nnoremap <f9> :set paste<cr>i
