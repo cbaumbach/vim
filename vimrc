@@ -69,22 +69,17 @@ let g:EasyMotion_prompt = 'Query Char: '
 " Trigger by c-c c-space (nul represents c-space).
 nmap <c-c><nul> <plug>(easymotion-s)
 " }}}
-" {{{ Toggle auto-wrapping.
+" {{{ Toggle auto-wrapping
 nnoremap <leader>l :call Toggle_auto_wrapping()<cr>
 function! Toggle_auto_wrapping()
     let fo = &l:formatoptions
-    try
-        echohl ModeMsg
-        if fo =~ '[ct]'
-            let &l:formatoptions = substitute(fo, '[ct]', '', 'g')
-            echo 'auto-wrapping off'
-        else
-            let &l:formatoptions .= 'ct'
-            echo 'auto-wrapping on'
-        endif
-    finally
-        echohl None
-    endtry
+    if fo =~ '[ct]'
+        let &l:formatoptions = substitute(fo, '[ct]', '', 'g')
+        echo 'auto-wrap off'
+    else
+        let &l:formatoptions .= 'ct'
+        echo 'auto-wrap on'
+    endif
 endfunction
 " }}}
 " {{{ Show highlighting groups for word under cursor.
