@@ -156,27 +156,14 @@ nnoremap <silent> <leader>a :nohlsearch<cr>
 " Open up help in new tab.
 nnoremap <leader>h :tab help<space>
 
-" Add an extra space between any two characters.
-nnoremap <leader><space> !!perl -pe 's/(.)/\1 /g; s/  *$//'<cr>
-
 " Follow tag in new tab.
 nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
-
-" Toggle Error highlighting group.
-nnoremap <silent> <leader>e :hi! link Error Normal<cr>
-nnoremap <silent> <leader>E :hi! link Error Contrast<cr>
-
-" Toggle list mode.
-nnoremap <leader>L :setlocal list!<cr>
 
 " Change to directory of current file.
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 
 " Select buffer from list.
 nnoremap <leader>b :ls<cr>:b<space>
-
-" Display tabular data in a readable way.
-command! -nargs=* PrettyTable .,$!column -t -s'<tab>'
 " }}}
 " {{{ Autocommands
 if has('autocmd')
