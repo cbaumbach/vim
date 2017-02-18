@@ -44,7 +44,6 @@ set smartcase
 let &softtabstop = g:preferred_tab_width
 let &shiftwidth = g:preferred_tab_width
 runtime utils/statusline.vim
-set switchbuf=usetab,newtab
 runtime utils/tabline.vim
 let &tabstop = g:preferred_tab_width
 set textwidth=70
