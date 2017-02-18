@@ -154,7 +154,7 @@ set pastetoggle=<f9>
 nnoremap <silent> <leader>a :nohlsearch<cr>
 
 " Open up help in new tab.
-nnoremap <leader>h :tab help |" this comment protects a trailing space
+nnoremap <leader>h :tab help<space>
 
 " Add an extra space between any two characters.
 nnoremap <leader><space> !!perl -pe 's/(.)/\1 /g; s/  *$//'<cr>
