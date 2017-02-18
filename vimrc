@@ -91,9 +91,6 @@ function! <SID>Show_highlighting_group()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 " }}}
-" {{{ Show colors for all highlight groups.
-nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
-" }}}
 " {{{ Produce landscape printout.
 command! -nargs=* LandscapeHardcopy call Landscape_hardcopy()
 function! Landscape_hardcopy()
@@ -131,6 +128,9 @@ endfunction
 " Toggle modifiable and read-only flags.
 nnoremap <silent> <leader>M :setlocal modifiable!<cr>:call Update_statusline()<cr>
 nnoremap <silent> <leader>R :setlocal readonly!<cr>:call Update_statusline()<cr>
+
+" Show colors for all highlight groups.
+nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
 
 " Trigger reloading of filetype-specific files.
 nnoremap rr :let &l:filetype = &l:filetype<cr>
