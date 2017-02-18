@@ -4,7 +4,7 @@ if has('syntax')
     syntax on  " start with default color settings
 endif
 filetype plugin indent on
-colorscheme green
+colorscheme blue
 runtime utils/testing.vim
 execute pathogen#infect()
 runtime utils/tmux.vim
