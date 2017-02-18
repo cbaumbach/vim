@@ -15,7 +15,6 @@ let g:preferred_tab_width = 4
 
 set autoindent
 set backspace=indent,eol,start
-set cmdwinheight=1  " see also help for cmdwin
 if !isdirectory($HOME . '/tmp')
     call mkdir($HOME . '/tmp')
 endif
@@ -44,9 +43,6 @@ set sidescroll=1
 set smartcase
 let &softtabstop = g:preferred_tab_width
 let &shiftwidth = g:preferred_tab_width
-set spelllang=en_us
-set splitbelow
-set splitright
 runtime utils/statusline.vim
 set switchbuf=usetab,newtab
 runtime utils/tabline.vim
