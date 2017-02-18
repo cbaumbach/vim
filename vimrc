@@ -25,7 +25,7 @@ let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=99  " always start with all folds opened
-set formatoptions=roql
+set formatoptions=troql
 set hidden
 set hlsearch
 nohlsearch  " turn off highlighting turned on by 'set hlsearch'
