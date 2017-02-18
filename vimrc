@@ -133,16 +133,6 @@ endfunction
 " <c-[> or <c-c> or jk.
 inoremap jk <esc>
 
-" Disable arrow keys.
-noremap  <left>  <nop>
-noremap  <right> <nop>
-noremap  <up>    <nop>
-noremap  <down>  <nop>
-noremap! <left>  <nop>
-noremap! <right> <nop>
-noremap! <up>    <nop>
-noremap! <down>  <nop>
-
 " Edit configuration file in new tab.
 nnoremap <leader>ee :tabedit $MYVIMRC<cr>
 " Source configuration file.
