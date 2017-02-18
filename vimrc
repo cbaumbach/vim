@@ -160,7 +160,7 @@ nnoremap <leader>h :tab help<space>
 nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
 
 " Change to directory of current file.
-nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
+nnoremap <leader>. :lcd %:p:h<cr>
 
 " Select buffer from list.
 nnoremap <leader>b :ls<cr>:b<space>
