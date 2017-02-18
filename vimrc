@@ -133,11 +133,6 @@ endfunction
 " <c-[> or <c-c> or jk.
 inoremap jk <esc>
 
-" Edit configuration file in new tab.
-nnoremap <leader>ee :tabedit $MYVIMRC<cr>
-" Source configuration file.
-nnoremap <leader>ss :source $MYVIMRC<cr>
-
 function! Update_statusline()
     " No-op: set variable to its current value
     let &readonly = &readonly
