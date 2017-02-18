@@ -116,7 +116,6 @@ function! Remove_trailing_whitespace()
         let old_cursor_position = getpos(".")
         silent! %s/\s\+$//ge
         call setpos(".", old_cursor_position)
-        " normal! ``
     endif
 endfunction
 " }}}
