@@ -57,18 +57,15 @@ let localmapleader = '\'
 inoremap jk <esc>
 
 " {{{ EasyMotion
-" Don't install default mappings.
-let g:EasyMotion_do_mapping = 0
-" Ignore case when matching query character.
-let g:EasyMotion_smartcase = 1
-" Enlarge set of target characters.  Use ; for grouping.
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-" Don't report jump summary.
-let g:EasyMotion_verbose = 0
-" Don't prompt for target character.
-let g:EasyMotion_show_prompt = 0
-" Set query character prompt.
-let g:EasyMotion_prompt = 'Query Char: '
+let g:EasyMotion_do_mapping = 0   " no default mappings
+let g:EasyMotion_smartcase = 1    " ignore case of query character
+" Define target characters.
+let s:alphabet = 'abcdefghijklmnopqrstuvwxyz'
+let s:grouping_character = ';'
+let g:EasyMotion_keys = s:alphabet . toupper(s:alphabet) . s:grouping_character
+let g:EasyMotion_verbose = 0      " no jump summary
+let g:EasyMotion_show_prompt = 0  " no target character prompt
+let g:EasyMotion_prompt = 'Query Char: '  " query character prompt
 " Trigger by c-c c-space (nul represents c-space).
 nmap <c-c><nul> <plug>(easymotion-s)
 " }}}
