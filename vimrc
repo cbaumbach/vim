@@ -146,9 +146,9 @@ nnoremap <silent> <leader>R :setlocal readonly!<cr>:call Update_statusline()<cr>
 nnoremap rr :let &l:filetype = &l:filetype<cr>
 
 " Toggle paste mode.
-nnoremap <silent> <localleader>p :set paste<cr>i
-inoremap <localleader>p <c-o>:set paste<cr>
-set pastetoggle=<localleader>p
+nnoremap <f9> :set paste<cr>i
+inoremap <f9> <c-o>:set paste<cr>
+set pastetoggle=<f9>
 
 " Remove highlighting.
 nnoremap <silent> <leader>a :nohlsearch<cr>
