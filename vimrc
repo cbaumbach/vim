@@ -53,7 +53,7 @@ set nowrap
 let mapleader = '-'
 let localmapleader = '\'
 
-" {{{ Emulate emacs' ace-jump-mode with EasyMotion
+" {{{ EasyMotion
 " Don't install default mappings.
 let g:EasyMotion_do_mapping = 0
 " Ignore case when matching query character.
@@ -82,7 +82,7 @@ function! Toggle_auto_wrapping()
     endif
 endfunction
 " }}}
-" {{{ Show highlighting groups for word under cursor.
+" {{{ Show highlighting groups under cursor
 nnoremap <leader>= :call <SID>Show_highlighting_group()<cr>
 function! <SID>Show_highlighting_group()
     if !exists('*synstack')
