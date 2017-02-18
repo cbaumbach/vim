@@ -93,12 +93,6 @@ function! <SID>Show_highlighting_group()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 " }}}
-" {{{ Produce landscape printout.
-command! -nargs=* LandscapeHardcopy call Landscape_hardcopy()
-function! Landscape_hardcopy()
-    execute 'set printoptions=portrait:n | hardcopy | set printoptions=portrait:y<cr>'
-endfunction
-" }}}
 " {{{ Remove trailing whitespace
 function! Remove_trailing_whitespace()
     if !&binary
