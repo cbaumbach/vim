@@ -93,15 +93,14 @@ function! <SID>Show_highlighting_group()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 " }}}
-
-function! Update_statusline()
-    " No-op: set variable to its current value
-    let &readonly = &readonly
-endfunction
-
-" Toggle modifiable and read-only flags.
+" {{{ Toggle modifiable and readonly
 nnoremap <silent> <leader>M :setlocal modifiable!<cr>:call Update_statusline()<cr>
 nnoremap <silent> <leader>R :setlocal readonly!<cr>:call Update_statusline()<cr>
+
+function! Update_statusline()
+    let &readonly = &readonly  " no-op
+endfunction
+" }}}
 
 " Show colors for all highlight groups.
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
