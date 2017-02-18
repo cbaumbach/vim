@@ -69,8 +69,9 @@ let g:EasyMotion_prompt = 'Query Char: '  " query character prompt
 " Trigger by c-c c-space (nul represents c-space).
 nmap <c-c><nul> <plug>(easymotion-s)
 " }}}
-" {{{ Toggle auto-wrapping
+" {{{ Auto-wrapping
 nnoremap <leader>l :call Toggle_auto_wrapping()<cr>
+
 function! Toggle_auto_wrapping()
     let fo = &l:formatoptions
     if fo =~ '[ct]'
@@ -82,8 +83,9 @@ function! Toggle_auto_wrapping()
     endif
 endfunction
 " }}}
-" {{{ Show highlighting groups under cursor
+" {{{ :highlight groups under cursor
 nnoremap <leader>= :call <SID>Show_highlighting_group()<cr>
+
 function! <SID>Show_highlighting_group()
     if !exists('*synstack')
         return
