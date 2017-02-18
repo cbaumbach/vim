@@ -8,6 +8,7 @@ hi! link ErrorMsg     Search
 hi! link FoldColumn   Normal
 hi! link Folded       Comment
 hi! link Function     Normal
+hi! link helpHyperTextJump Comment
 hi! link HelpNote     Visual
 hi! link Identifier   Normal
 hi! link IncSearch    Visual
