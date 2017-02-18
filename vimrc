@@ -93,24 +93,6 @@ function! <SID>Show_highlighting_group()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 " }}}
-" {{{ Remove trailing whitespace
-function! Remove_trailing_whitespace()
-    if !&binary
-        let old_cursor_position = getpos(".")
-        silent! %s/\s\+$//ge
-        call setpos(".", old_cursor_position)
-    endif
-endfunction
-" }}}
-" {{{ Remove empty lines at the end of the file
-function! Remove_empty_lines_at_end_of_file()
-    if !&binary
-        let old_cursor_position = getpos(".")
-        silent! v/\_s*\S/d
-        call setpos(".", old_cursor_position)
-    endif
-endfunction
-" }}}
 
 function! Update_statusline()
     " No-op: set variable to its current value
@@ -148,6 +130,24 @@ nnoremap <leader>. :lcd %:p:h<cr>
 nnoremap <leader>b :ls<cr>:b<space>
 " }}}
 " {{{ Autocommands
+" {{{ Trailing whitespace
+function! Remove_trailing_whitespace()
+    if !&binary
+        let old_cursor_position = getpos(".")
+        silent! %s/\s\+$//ge
+        call setpos(".", old_cursor_position)
+    endif
+endfunction
+" }}}
+" {{{ Blank lines at end of file
+function! Remove_empty_lines_at_end_of_file()
+    if !&binary
+        let old_cursor_position = getpos(".")
+        silent! v/\_s*\S/d
+        call setpos(".", old_cursor_position)
+    endif
+endfunction
+" }}}
 if has('autocmd')
 
     augroup general
