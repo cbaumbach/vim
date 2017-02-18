@@ -175,9 +175,14 @@ nnoremap <leader>ee :tabedit $MYVIMRC<cr>
 " Source configuration file.
 nnoremap <leader>ss :source $MYVIMRC<cr>
 
+function! Update_statusline()
+    " No-op: set variable to its current value
+    let &readonly = &readonly
+endfunction
+
 " Toggle modifiable and read-only flags.
-nnoremap <silent> <leader>M :setlocal modifiable!<cr>
-nnoremap <silent> <leader>R :setlocal readonly!<cr>
+nnoremap <silent> <leader>M :setlocal modifiable!<cr>:call Update_statusline()<cr>
+nnoremap <silent> <leader>R :setlocal readonly!<cr>:call Update_statusline()<cr>
 
 " Trigger reloading of filetype-specific files.
 nnoremap rr :let &l:filetype = &l:filetype<cr>
