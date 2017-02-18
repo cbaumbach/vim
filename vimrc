@@ -24,7 +24,7 @@ set encoding=utf-8
 let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
-set foldlevelstart=99
+set foldlevelstart=99  " always start with all folds opened
 set formatoptions=roql
 set hidden
 set hlsearch
@@ -171,7 +171,7 @@ if has('autocmd')
 
     augroup filetype_vim
         autocmd!
-        autocmd FileType vim setlocal foldmethod=marker foldlevelstart=0
+        autocmd FileType vim setlocal foldmethod=marker foldlevel=0
         " Source current vim script.
         autocmd FileType vim nnoremap <buffer> ss :write<cr>:source %<cr>
     augroup END
