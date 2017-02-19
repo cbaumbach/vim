@@ -101,6 +101,32 @@ function! Update_statusline()
     let &readonly = &readonly  " no-op
 endfunction
 " }}}
+" {{{ Fullscreen help
+nnoremap <leader>h :call Help()<cr>
+
+function! Help()
+    let topic = s:trim(input(':help ', '', 'help'))
+    if topic =~ '^\s*$'
+        echo
+        return
+    endif
+    try
+        execute ':help ' . topic
+    catch /:E149/
+        echohl ErrorMsg
+        echo 'E149: Sorry, no help for ' . topic
+        echohl None
+        return
+    endtry
+    if winnr('$') > 1
+        only
+    endif
+endfunction
+
+function! s:trim(s)
+    return substitute(substitute(a:s, '^\s*', '', ''), '\s*$', '', '')
+endfunction
+" }}}
 
 " Show colors for all highlight groups.
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
@@ -115,9 +141,6 @@ set pastetoggle=<f9>
 
 " Remove highlighting.
 nnoremap <silent> <leader>a :nohlsearch<cr>
-
-" Open up help in new tab.
-nnoremap <leader>h :tab help<space>
 
 " Follow tag in new tab.
 nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
