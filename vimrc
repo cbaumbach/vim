@@ -36,13 +36,14 @@ set list
 set listchars=conceal:\ ,tab:»\ ,trail:·
 set matchtime=5
 set printoptions=formfeed:y
+let &shiftwidth = g:preferred_tab_width
 set shortmess+=I
 let &showbreak = '> '
 set showmatch
 set sidescroll=1
 set smartcase
 let &softtabstop = g:preferred_tab_width
-let &shiftwidth = g:preferred_tab_width
+set nostartofline
 runtime utils/statusline.vim
 runtime utils/tabline.vim
 let &tabstop = g:preferred_tab_width
