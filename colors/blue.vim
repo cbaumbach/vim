@@ -12,7 +12,7 @@ let g:colors_name = 'blue'
 
 hi Comment ctermfg=012 ctermbg=000 cterm=none
 hi Normal  ctermfg=045 ctermbg=000 cterm=none
-hi Search  ctermfg=011 ctermbg=000 cterm=none
+hi Search  ctermfg=013 ctermbg=000 cterm=none
 hi String  ctermfg=082 ctermbg=000 cterm=none
 hi Visual  ctermfg=011 ctermbg=025 cterm=none
 hi Window  ctermfg=013 ctermbg=000 cterm=none
