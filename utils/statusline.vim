@@ -1,5 +1,5 @@
 function! CustomStatusLine()
-    let s = ' %t'
+    let s = ' %f'
     if &modified || !&modifiable
         let s .= ' %m'
     endif
