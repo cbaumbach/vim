@@ -128,6 +128,32 @@ function! s:trim(s)
     return substitute(substitute(a:s, '^\s*', '', ''), '\s*$', '', '')
 endfunction
 " }}}
+" {{{ Insert filename
+inoremap <c-f> <esc>:call Insert_filename()<cr>
+
+function! Insert_filename()
+    let path = s:trim(input('File: ', '', 'file'))
+    if path == '' | echo | return | endif
+    let old_contents = getreg('')
+    call setreg('', path)
+    execute 'normal p'
+    call setreg('', old_contents)
+    call s:normal_a()
+endfunction
+
+function! s:normal_a()
+    if s:cursor_at_end_of_line()
+        startinsert!
+    else
+        execute 'normal l'
+        startinsert
+    endif
+endfunction
+
+function! s:cursor_at_end_of_line()
+    return col('.') == col('$') - 1
+endfunction
+" }}}
 
 " Show colors for all highlight groups.
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
