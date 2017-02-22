@@ -25,4 +25,8 @@ hi EasyMotionTarget ctermfg=011
 hi ModeMsg cterm=none
 hi MoreMsg cterm=none
 
+" Git commit diff
+hi DiffAdded   ctermfg=010 ctermbg=000
+hi DiffRemoved ctermfg=009 ctermbg=000
+
 runtime colors/common/link_other_groups.vim
