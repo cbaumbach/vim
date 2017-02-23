@@ -19,7 +19,7 @@ hi Window  ctermfg=013 ctermbg=000 cterm=none
 
 " EasyMotion
 hi EasyMotionShade  ctermfg=008
-hi EasyMotionTarget ctermfg=011
+hi EasyMotionTarget ctermfg=082
 
 " Disable bold font
 hi ModeMsg cterm=none
