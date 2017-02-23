@@ -14,7 +14,7 @@ hi Comment ctermfg=028 ctermbg=000 cterm=none
 hi Normal  ctermfg=082 ctermbg=000 cterm=none
 hi Search  ctermfg=013 ctermbg=000 cterm=none
 hi String  ctermfg=045 ctermbg=000 cterm=none
-hi Visual  ctermfg=011 ctermbg=022 cterm=none
+hi Visual  ctermfg=015 ctermbg=022 cterm=none
 hi Window  ctermfg=013 ctermbg=000 cterm=none
 
 " EasyMotion
