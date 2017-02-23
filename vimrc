@@ -136,7 +136,7 @@ function! Insert_filename()
     if path == '' | echo | return | endif
     let old_contents = getreg('')
     call setreg('', path)
-    execute 'normal p'
+    normal p
     call setreg('', old_contents)
     call s:normal_a()
 endfunction
@@ -145,7 +145,7 @@ function! s:normal_a()
     if s:cursor_at_end_of_line()
         startinsert!
     else
-        execute 'normal l'
+        normal l
         startinsert
     endif
 endfunction
