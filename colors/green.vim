@@ -10,8 +10,8 @@ if exists('syntax_on')
 endif
 let g:colors_name = 'green'
 
-hi Comment ctermfg=022 ctermbg=000 cterm=none
-hi Normal  ctermfg=002 ctermbg=000 cterm=none
+hi Comment ctermfg=028 ctermbg=000 cterm=none
+hi Normal  ctermfg=082 ctermbg=000 cterm=none
 hi Search  ctermfg=013 ctermbg=000 cterm=none
 hi String  ctermfg=045 ctermbg=000 cterm=none
 hi Visual  ctermfg=011 ctermbg=022 cterm=none
