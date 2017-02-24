@@ -208,7 +208,6 @@ if has('autocmd')
     augroup filetype_vim
         autocmd!
         autocmd FileType vim setlocal foldmethod=marker foldlevel=0
-        " Source current vim script.
         autocmd FileType vim nnoremap <buffer> ss :write<cr>:source %<cr>
     augroup END
 
@@ -217,6 +216,14 @@ if has('autocmd')
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
         autocmd FileType c,cpp setlocal formatoptions-=t
         autocmd FileType c,cpp setlocal autowrite
+    augroup END
+
+    augroup filetype_R
+        autocmd!
+        autocmd FileType R setlocal makeprg=Rscript\ %
+        autocmd FileType R nnoremap <buffer> ss :make<cr>
+        autocmd FileType R setlocal autowrite
+        autocmd FileType R setlocal foldmethod=manual
     augroup END
 
 endif
