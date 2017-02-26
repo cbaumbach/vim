@@ -167,6 +167,7 @@ function! Help()
         return
     endtry
     let help_buffer = bufname('%')
+    let cursor_line = getpos('.')[1]
     if winnr('$') > len(buffers)
         " A new window was created.  Close it.
         wincmd c
@@ -177,6 +178,8 @@ function! Help()
     endif
     execute target_window . 'wincmd w'
     execute 'buffer ' . help_buffer
+    execute 'normal! ' . cursor_line . 'G'
+    normal! zt
     " Don't use special characters for tabs etc.
     setlocal nolist
 endfunction
