@@ -10,7 +10,7 @@ function! CustomStatusLine()
     let s .= '%c'
     let max_row = line('$')
     let max_digits_in_row_number = strlen(max_row)
-    let s .= ' % ' . max_digits_in_row_number . 'l/%L'
+    let s .= ' %' . max_digits_in_row_number . 'l/%L'
     return s
 endfunction
 
