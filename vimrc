@@ -170,11 +170,11 @@ function! Help()
         echohl None
         return
     endtry
-    let help_buffer = bufname('%')
+    let help_buffer = bufnr('%')
     let cursor_line = getpos('.')[1]
     if winnr('$') > len(window_settings)
         " A new window was created.  Close it.
-        wincmd c
+        hide
     elseif winnr() != target_window
         " The help buffer was opened in an existing window but not the
         " one we wanted.  From the documentation of :help we even know
