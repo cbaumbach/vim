@@ -112,13 +112,15 @@ function! Switch_buffer()
 endfunction
 
 function! FindMatchingBuffers(ArgLead, CmdLine, CursorPos)
-    let pattern = s:trim(a:ArgLead)
     let buffers = map(range(1, bufnr('$')), 'bufname(v:val)')
+    let pattern = s:trim(a:ArgLead)
     if empty(pattern)
-        return buffers
+        let matching_buffers = buffers
+    else
+        let matching_buffers = filter(buffers, 'v:val =~? pattern')
     endif
-    let matching_buffers = filter(buffers, 'v:val =~? pattern')
-    return matching_buffers
+    let leading_whitespace = matchstr(a:ArgLead, '^\s*')
+    return map(matching_buffers, 'leading_whitespace . v:val')
 endfunction
 " }}}
 " {{{ Fullscreen help
