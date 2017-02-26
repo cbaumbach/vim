@@ -147,15 +147,17 @@ function! FindMatchingBuffers(ArgLead, CmdLine, CursorPos)
     return map(matching_buffers, 'leading_whitespace . v:val')
 endfunction
 " }}}
-" {{{ Fullscreen help
+" {{{ Show help in current window
 nnoremap <leader>h :call Help()<cr>
 
 function! Help()
     let topic = s:trim(input(':help ', '', 'help'))
-    if topic =~ '^\s*$'
+    if empty(topic)
         echo
         return
     endif
+    let buffers = map(range(1, winnr('$')), 'bufname(v:val)')
+    let target_window = winnr()
     try
         execute ':help ' . topic
     catch /:E149/
@@ -164,9 +166,19 @@ function! Help()
         echohl None
         return
     endtry
-    if winnr('$') > 1
-        only
+    let help_buffer = bufname('%')
+    if winnr('$') > len(buffers)
+        " A new window was created.  Close it.
+        wincmd c
+    elseif winnr() != target_window
+        " The help buffer was opened in an existing window but not the
+        " one we wanted.  Give that window back its old buffer.
+        execute 'buffer ' . bufname(buffers[winnr()])
     endif
+    execute target_window . 'wincmd w'
+    execute 'buffer ' . help_buffer
+    " Don't use special characters for tabs etc.
+    setlocal nolist
 endfunction
 
 function! s:trim(s)
