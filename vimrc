@@ -102,6 +102,25 @@ function! Update_statusline()
     let &readonly = &readonly  " no-op
 endfunction
 " }}}
+" {{{ Switch buffer
+command! -nargs=1 -complete=customlist,FindMatchingBuffers Buffer :buffer <args>
+nnoremap t :call Switch_buffer()<cr>
+
+function! Switch_buffer()
+    let buffer = input(':buffer ', '', 'customlist,FindMatchingBuffers')
+    execute 'buffer ' . buffer
+endfunction
+
+function! FindMatchingBuffers(ArgLead, CmdLine, CursorPos)
+    let pattern = s:trim(a:ArgLead)
+    let buffers = map(range(1, bufnr('$')), 'bufname(v:val)')
+    if empty(pattern)
+        return buffers
+    endif
+    let matching_buffers = filter(buffers, 'v:val =~? pattern')
+    return matching_buffers
+endfunction
+" }}}
 " {{{ Fullscreen help
 nnoremap <leader>h :call Help()<cr>
 
