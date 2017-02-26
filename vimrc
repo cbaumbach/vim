@@ -62,7 +62,7 @@ inoremap jk <esc>
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
 
 " Reload filetype-specific files.
-nnoremap <leader>r :let &l:filetype = &l:filetype<cr>
+nnoremap <silent> <leader>r :let &l:filetype = &l:filetype<cr>
 
 " Toggle paste mode.
 nnoremap <f9> :set paste<cr>i
