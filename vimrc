@@ -35,7 +35,6 @@ set laststatus=2
 set list
 set listchars=conceal:\ ,tab:»\ ,trail:·
 set matchtime=5
-set printoptions=formfeed:y
 let &shiftwidth = g:preferred_tab_width
 set shortmess+=I
 let &showbreak = '> '
