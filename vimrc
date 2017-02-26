@@ -156,8 +156,13 @@ function! Help()
         echo
         return
     endif
-    let buffers = map(range(1, winnr('$')), 'bufname(v:val)')
     let target_window = winnr()
+    let buffers = map(range(1, winnr('$')), 'winbufnr(v:val)')
+    let window_settings = []
+    for i in range(1, winnr('$'))
+        execute i . 'wincmd w'
+        call add(window_settings, winsaveview())
+    endfor
     try
         execute ':help ' . topic
     catch /:E149/
@@ -168,13 +173,17 @@ function! Help()
     endtry
     let help_buffer = bufname('%')
     let cursor_line = getpos('.')[1]
-    if winnr('$') > len(buffers)
+    if winnr('$') > len(window_settings)
         " A new window was created.  Close it.
         wincmd c
     elseif winnr() != target_window
         " The help buffer was opened in an existing window but not the
-        " one we wanted.  Give that window back its old buffer.
-        execute 'buffer ' . bufname(buffers[winnr()])
+        " one we wanted.  From the documentation of :help we even know
+        " that the window contained a help page buffer.
+        "
+        " Restore the accidentally changed window.
+        execute 'buffer ' . buffers[winnr() - 1]
+        call winrestview(window_settings[winnr() - 1])
     endif
     execute target_window . 'wincmd w'
     execute 'buffer ' . help_buffer
