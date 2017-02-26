@@ -51,12 +51,36 @@ set textwidth=70
 set nowrap
 " }}}
 " {{{ Mappings
+" {{{ Various mappings
 let mapleader = '-'
 let localmapleader = '\'
 
 " Alternative to esc, c-[, and c-c.
 inoremap jk <esc>
 
+" Show colors for all highlight groups.
+nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
+
+" Reload filetype-specific files.
+nnoremap <leader>r :let &l:filetype = &l:filetype<cr>
+
+" Toggle paste mode.
+nnoremap <f9> :set paste<cr>i
+inoremap <f9> <c-o>:set paste<cr>
+set pastetoggle=<f9>
+
+" Remove highlighting.
+nnoremap <silent> <leader>a :nohlsearch<cr>
+
+" Follow tag in new tab.
+nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
+
+" Change to directory of current file.
+nnoremap <leader>. :lcd %:p:h<cr>
+
+" Select buffer from list.
+nnoremap <leader>b :ls<cr>:b<space>
+" }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
 let g:EasyMotion_smartcase = 1    " ignore case of query character
@@ -175,29 +199,6 @@ function! s:cursor_at_end_of_line()
     return col('.') == col('$') - 1
 endfunction
 " }}}
-
-" Show colors for all highlight groups.
-nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
-
-" Reload filetype-specific files.
-nnoremap <leader>r :let &l:filetype = &l:filetype<cr>
-
-" Toggle paste mode.
-nnoremap <f9> :set paste<cr>i
-inoremap <f9> <c-o>:set paste<cr>
-set pastetoggle=<f9>
-
-" Remove highlighting.
-nnoremap <silent> <leader>a :nohlsearch<cr>
-
-" Follow tag in new tab.
-nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
-
-" Change to directory of current file.
-nnoremap <leader>. :lcd %:p:h<cr>
-
-" Select buffer from list.
-nnoremap <leader>b :ls<cr>:b<space>
 " }}}
 " {{{ Autocommands
 " {{{ Trailing whitespace
