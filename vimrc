@@ -251,6 +251,26 @@ function! s:Set_search_pattern_to_visual_selection(cmdtype)
     let @/ = '\V' . substitute(escape(@", a:cmdtype . '\'), '\n', '\\n', 'g')
     let @" = temp
 endfunction
+" {{{ german-postfix
+nnoremap <silent> <c-g> :call <sid>German_postfix()<cr>
+inoremap <silent> <c-g> <c-o>:call <sid>German_postfix()<cr>
+
+let g:german_postfix = 0
+function! s:German_postfix()
+    if g:german_postfix
+        iunmap oe
+        iunmap ae
+        iunmap ue
+        iunmap sz
+        let g:german_postfix = 0
+    else
+        inoremap oe <c-k>o:
+        inoremap ae <c-k>a:
+        inoremap ue <c-k>u:
+        inoremap sz <c-k>ss
+        let g:german_postfix = 1
+    endif
+endfunction
 " }}}
 " }}}
 " {{{ Autocommands
