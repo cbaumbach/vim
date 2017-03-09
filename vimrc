@@ -128,7 +128,7 @@ endfunction
 " }}}
 " {{{ Switch buffer
 command! -nargs=1 -complete=customlist,FindMatchingBuffers Buffer :buffer <args>
-nnoremap t :call Switch_buffer()<cr>
+nnoremap <c-x>b :call Switch_buffer()<cr>
 
 function! Switch_buffer()
     let buffer = input(':buffer ', '', 'customlist,FindMatchingBuffers')
