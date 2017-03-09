@@ -69,8 +69,8 @@ nnoremap <f9> :set paste<cr>i
 inoremap <f9> <c-o>:set paste<cr>
 set pastetoggle=<f9>
 
-" Remove highlighting.
-nnoremap <silent> <leader>a :nohlsearch<cr>
+" Remove search highlighting and refresh the screen.
+nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 
 " Follow tag in new tab.
 nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
