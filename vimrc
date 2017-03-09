@@ -241,6 +241,17 @@ function! Switch_to_alternate_buffer()
     let &l:filetype = &l:filetype
 endfunction
 " }}}
+" {{{ Search for selected text
+xnoremap * :<c-u>call <sid>Set_search_pattern_to_visual_selection('/')<cr>/<c-r>=@/<cr><cr>
+xnoremap # :<c-u>call <sid>Set_search_pattern_to_visual_selection('?')<cr>?<c-r>=@/<cr><cr>
+
+function! s:Set_search_pattern_to_visual_selection(cmdtype)
+    let temp = @"
+    normal! gvy
+    let @/ = '\V' . substitute(escape(@", a:cmdtype . '\'), '\n', '\\n', 'g')
+    let @" = temp
+endfunction
+" }}}
 " }}}
 " {{{ Autocommands
 " {{{ Trailing whitespace
