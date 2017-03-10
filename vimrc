@@ -258,15 +258,21 @@ inoremap <silent> <c-g> <c-o>:call <sid>German_postfix()<cr>
 let g:german_postfix = 0
 function! s:German_postfix()
     if g:german_postfix
-        iunmap oe
         iunmap ae
+        iunmap oe
         iunmap ue
+        iunmap AE
+        iunmap OE
+        iunmap UE
         iunmap sz
         let g:german_postfix = 0
     else
-        inoremap oe <c-k>o:
         inoremap ae <c-k>a:
+        inoremap oe <c-k>o:
         inoremap ue <c-k>u:
+        inoremap AE <c-k>A:
+        inoremap OE <c-k>O:
+        inoremap UE <c-k>U:
         inoremap sz <c-k>ss
         let g:german_postfix = 1
     endif
