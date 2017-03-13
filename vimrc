@@ -80,6 +80,9 @@ nnoremap <leader>. :lcd %:p:h<cr>
 
 " Select buffer from list.
 nnoremap <leader>b :ls<cr>:b<space>
+
+" Insert dirname of file in current buffer
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
