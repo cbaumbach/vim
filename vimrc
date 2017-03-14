@@ -122,8 +122,9 @@ function! <SID>Show_highlighting_group()
 endfunction
 " }}}
 " {{{ Toggle modifiable and readonly
-nnoremap <silent> <leader>M :setlocal modifiable!<cr>:call Update_statusline()<cr>
-nnoremap <silent> <leader>R :setlocal readonly!<cr>:call Update_statusline()<cr>
+" The mappings look like the corresponding command-line options.
+nnoremap <silent> -M :setlocal modifiable!<cr>:call Update_statusline()<cr>
+nnoremap <silent> -R :setlocal readonly!<cr>:call Update_statusline()<cr>
 
 function! Update_statusline()
     let &readonly = &readonly  " no-op
