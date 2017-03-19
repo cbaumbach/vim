@@ -1,5 +1,5 @@
-if &t_Co != 256
-    echomsg "Error: color scheme requires a 256-color terminal"
+if &t_Co < 256 && !has("gui_running")
+    echomsg "Error: color scheme requires a terminal with at least 256 colors"
     finish
 endif
 
@@ -10,23 +10,23 @@ if exists('syntax_on')
 endif
 let g:colors_name = 'blue'
 
-hi Comment ctermfg=012 ctermbg=000 cterm=none
-hi Normal  ctermfg=045 ctermbg=000 cterm=none
-hi Search  ctermfg=013 ctermbg=000 cterm=none
-hi String  ctermfg=082 ctermbg=000 cterm=none
-hi Visual  ctermfg=015 ctermbg=025 cterm=none
-hi Window  ctermfg=013 ctermbg=000 cterm=none
+hi Comment ctermfg=012 guifg=#0000ff ctermbg=000 guibg=#000000 cterm=none gui=none
+hi Normal  ctermfg=045 guifg=#00dfff ctermbg=000 guibg=#000000 cterm=none gui=none
+hi Search  ctermfg=013 guifg=#ff00ff ctermbg=000 guibg=#000000 cterm=none gui=none
+hi String  ctermfg=082 guifg=#5fff00 ctermbg=000 guibg=#000000 cterm=none gui=none
+hi Visual  ctermfg=015 guifg=#ffffff ctermbg=025 guibg=#005faf cterm=none gui=none
+hi Window  ctermfg=013 guifg=#ff00ff ctermbg=000 guibg=#000000 cterm=none gui=none
 
 " EasyMotion
-hi EasyMotionShade  ctermfg=008
-hi EasyMotionTarget ctermfg=082
+hi EasyMotionShade  ctermfg=008 guifg=#808080
+hi EasyMotionTarget ctermfg=082 guifg=#5fff00
 
 " Disable bold font
-hi ModeMsg cterm=none
-hi MoreMsg cterm=none
+hi ModeMsg cterm=none gui=none
+hi MoreMsg cterm=none gui=none
 
 " Git commit diff
-hi DiffAdded   ctermfg=010 ctermbg=000
-hi DiffRemoved ctermfg=009 ctermbg=000
+hi DiffAdded   ctermfg=010 guifg=#00ff00 ctermbg=000 guibg=#000000
+hi DiffRemoved ctermfg=009 guifg=#ff0000 ctermbg=000 guibg=#000000
 
 runtime colors/common/link_other_groups.vim
