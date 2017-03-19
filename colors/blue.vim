@@ -10,7 +10,7 @@ if exists('syntax_on')
 endif
 let g:colors_name = 'blue'
 
-hi Comment ctermfg=012 guifg=#0000ff ctermbg=000 guibg=#000000 cterm=none gui=none
+hi Comment ctermfg=012 guifg=#0087ff ctermbg=000 guibg=#000000 cterm=none gui=none
 hi Normal  ctermfg=045 guifg=#00dfff ctermbg=000 guibg=#000000 cterm=none gui=none
 hi Search  ctermfg=013 guifg=#ff00ff ctermbg=000 guibg=#000000 cterm=none gui=none
 hi String  ctermfg=082 guifg=#5fff00 ctermbg=000 guibg=#000000 cterm=none gui=none
