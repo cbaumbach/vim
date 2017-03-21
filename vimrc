@@ -83,9 +83,6 @@ nnoremap <leader>b :ls<cr>:b<space>
 
 " Insert dirname of file in current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
-
-" Delete current buffer
-nnoremap <silent> <c-x>k :bp\|bd#<cr>
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
@@ -283,6 +280,18 @@ function! s:German_postfix()
         inoremap UE <c-k>U:
         inoremap sz <c-k>ss
         let g:german_postfix = 1
+    endif
+endfunction
+" }}}
+" {{{ Delete current buffer
+nnoremap <silent> <c-x>k :call <sid>Delete_current_buffer()<cr>
+
+function! s:Delete_current_buffer()
+    let alternate_file = expand('#')
+    bprevious
+    bdelete #
+    if alternate_file != ''
+        execute 'buffer' alternate_file
     endif
 endfunction
 " }}}
