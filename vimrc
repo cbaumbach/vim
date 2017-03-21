@@ -255,6 +255,7 @@ function! s:Set_search_pattern_to_visual_selection(cmdtype)
     let @/ = '\V' . substitute(escape(@", a:cmdtype . '\'), '\n', '\\n', 'g')
     let @" = temp
 endfunction
+" }}}
 " {{{ german-postfix
 nnoremap <silent> <c-g> :call <sid>German_postfix()<cr>
 inoremap <silent> <c-g> <c-o>:call <sid>German_postfix()<cr>
