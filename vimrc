@@ -83,6 +83,9 @@ nnoremap <leader>b :ls<cr>:b<space>
 
 " Insert dirname of file in current buffer
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
+
+" Extend functionality of %
+runtime macros/matchit.vim
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
