@@ -27,6 +27,8 @@ set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=99  " always start with all folds opened
 set formatoptions=troql
+set grepformat=%f:%l:%c:%m
+set grepprg=ack\ --nogroup\ --column\ $*
 set hidden
 set hlsearch
 nohlsearch  " turn off highlighting turned on by 'set hlsearch'
