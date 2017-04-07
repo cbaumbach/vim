@@ -128,10 +128,24 @@ endfunction
 " }}}
 " {{{ Toggle modifiable and readonly
 " The mappings look like the corresponding command-line options.
-nnoremap <silent> -M :setlocal modifiable!<cr>:call Update_statusline()<cr>
-nnoremap <silent> -R :setlocal readonly!<cr>:call Update_statusline()<cr>
+nnoremap <silent> -M :call <sid>toggle_modifiable()<cr>
+nnoremap <silent> -R :call <sid>toggle_readonly()<cr>
 
-function! Update_statusline()
+function! s:toggle_modifiable()
+    let &l:modifiable = ! &l:modifiable
+    if &l:modifiable && ! &write
+        let &write = 1
+    endif
+    call <sid>update_statusline()
+endfunction
+
+function! s:toggle_readonly()
+    let &l:readonly = ! &l:readonly
+    call <sid>update_statusline()
+endfunction
+
+function! s:update_statusline()
+    " Set global option to force statusline update
     let &readonly = &readonly  " no-op
 endfunction
 " }}}
