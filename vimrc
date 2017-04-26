@@ -26,7 +26,7 @@ let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=99  " always start with all folds opened
-set formatoptions=troql
+set formatoptions=roql
 set grepformat=%f:%l:%c:%m
 set grepprg=ack\ --nogroup\ --column\ $*
 set hidden
