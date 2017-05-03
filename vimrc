@@ -88,6 +88,9 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 
 " Extend functionality of %
 runtime macros/matchit.vim
+
+" Force write with sudo
+command! WW :w !sudo tee % >/dev/null
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
