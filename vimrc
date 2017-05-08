@@ -309,10 +309,10 @@ endfunction
 nnoremap <silent> <c-x>k :call <sid>Delete_current_buffer()<cr>
 
 function! s:Delete_current_buffer()
-    let alternate_file = expand('#')
+    let alternate_file = bufnr('#')
     bprevious
     bdelete #
-    if alternate_file != ''
+    if alternate_file != -1
         execute 'buffer' alternate_file
     endif
 endfunction
