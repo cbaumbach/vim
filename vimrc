@@ -26,7 +26,6 @@ let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
 set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
 set foldlevelstart=99  " always start with all folds opened
-set formatoptions=roql
 set grepformat=%f:%l:%c:%m
 set grepprg=ack\ --nogroup\ --column\ $*
 set hidden
@@ -110,11 +109,11 @@ nnoremap <leader>l :call Toggle_auto_wrapping()<cr>
 
 function! Toggle_auto_wrapping()
     let fo = &l:formatoptions
-    if fo =~ '[ct]'
-        let &l:formatoptions = substitute(fo, '[ct]', '', 'g')
+    if fo =~ 't'
+        let &l:formatoptions = substitute(fo, 't', '', 'g')
         echo 'auto-wrap off'
     else
-        let &l:formatoptions .= 'ct'
+        let &l:formatoptions .= 't'
         echo 'auto-wrap on'
     endif
 endfunction
@@ -354,7 +353,6 @@ if has('autocmd')
     augroup filetype_c
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
-        autocmd FileType c,cpp setlocal formatoptions-=t
         autocmd FileType c,cpp setlocal autowrite
     augroup END
 
@@ -364,6 +362,11 @@ if has('autocmd')
         autocmd FileType R nnoremap <buffer> ss :make<cr>
         autocmd FileType R setlocal autowrite
         autocmd FileType R setlocal foldmethod=manual
+    augroup END
+
+    augroup formatoptions
+        autocmd!
+        autocmd BufEnter * setlocal formatoptions=clqr
     augroup END
 
 endif
