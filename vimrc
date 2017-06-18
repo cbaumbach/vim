@@ -49,6 +49,7 @@ runtime utils/statusline.vim
 runtime utils/tabline.vim
 let &tabstop = g:preferred_tab_width
 set textwidth=70
+set timeoutlen=200
 set nowrap
 " }}}
 " {{{ Mappings
