@@ -11,7 +11,7 @@ endif
 let g:colors_name = 'blue'
 
 hi Comment ctermfg=012 guifg=#0087ff ctermbg=000 guibg=#000000 cterm=none gui=none
-hi Normal  ctermfg=045 guifg=#00dfff ctermbg=000 guibg=#000000 cterm=none gui=none
+hi Normal  ctermfg=014 guifg=#00dfff ctermbg=000 guibg=#000000 cterm=none gui=none
 hi Search  ctermfg=013 guifg=#ff00ff ctermbg=000 guibg=#000000 cterm=none gui=none
 hi String  ctermfg=082 guifg=#5fff00 ctermbg=000 guibg=#000000 cterm=none gui=none
 hi Visual  ctermfg=015 guifg=#ffffff ctermbg=025 guibg=#005faf cterm=none gui=none
