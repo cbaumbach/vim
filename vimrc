@@ -15,11 +15,11 @@ let g:preferred_tab_width = 4
 
 set autoindent
 set backspace=indent,eol,start
-if !isdirectory($HOME . '/tmp')
-    call mkdir($HOME . '/tmp')
+if !isdirectory($HOME . '/.tmp')
+    call mkdir($HOME . '/.tmp')
 endif
 let &cpoptions = substitute(&cpoptions, '\Ca', '', 'g')
-set directory=$HOME/tmp//
+set directory=$HOME/.tmp//
 set encoding=utf-8
 " Prepend a pattern that matches unity failure messages.
 let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
