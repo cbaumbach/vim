@@ -249,24 +249,6 @@ function! s:cursor_at_end_of_line()
     return col('.') == col('$') - 1
 endfunction
 " }}}
-" {{{ Restore alternate buffer
-nnoremap <silent> <c-^> :call Switch_to_alternate_buffer()<cr>
-
-function! Switch_to_alternate_buffer()
-    if empty(bufname('#'))
-        echohl ErrorMsg
-        echo 'E23: No alternate file'
-        echohl None
-        return
-    endif
-    let b:window_settings = winsaveview()
-    execute 'buffer ' . bufnr('#')
-    if exists('b:window_settings')
-        call winrestview(b:window_settings)
-    endif
-    let &l:filetype = &l:filetype
-endfunction
-" }}}
 " {{{ Search for selected text
 xnoremap * :<c-u>call <sid>Set_search_pattern_to_visual_selection('/')<cr>/<c-r>=@/<cr><cr>
 xnoremap # :<c-u>call <sid>Set_search_pattern_to_visual_selection('?')<cr>?<c-r>=@/<cr><cr>
@@ -337,12 +319,25 @@ function! Remove_empty_lines_at_end_of_file()
     endif
 endfunction
 " }}}
+" {{{ Save and restore buffer position
+function! Save_current_position()
+    let b:window_settings = winsaveview()
+endfunction
+
+function! Restore_last_position()
+    if exists('b:window_settings')
+        call winrestview(b:window_settings)
+    endif
+endfunction
+" }}}
 if has('autocmd')
 
     augroup general
         autocmd!
         autocmd BufWritePre * call Remove_trailing_whitespace()
         autocmd BufWritePre * call Remove_empty_lines_at_end_of_file()
+        autocmd BufEnter * call Restore_last_position()
+        autocmd BufLeave * call Save_current_position()
     augroup END
 
     augroup filetype_vim
