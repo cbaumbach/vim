@@ -4,7 +4,11 @@ if has('syntax')
     syntax on  " start with default color settings
 endif
 filetype plugin indent on
-colorscheme blue
+if &t_Co >= 256 || has('gui_running')
+    colorscheme blue
+else
+    colorscheme koehler
+endif
 runtime utils/testing.vim
 execute pathogen#infect()
 runtime utils/tmux.vim
