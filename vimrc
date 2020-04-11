@@ -96,6 +96,10 @@ runtime macros/matchit.vim
 
 " Force write with sudo
 command! WW :w !sudo tee % >/dev/null
+
+" Make C-p and C-n work like Up and Down in Command mode
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
