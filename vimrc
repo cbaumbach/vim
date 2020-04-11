@@ -33,6 +33,7 @@ set foldlevelstart=99  " always start with all folds opened
 set grepformat=%f:%l:%c:%m
 set grepprg=ack\ --nogroup\ --column\ $*
 set hidden
+set history=200
 set hlsearch
 nohlsearch  " turn off highlighting turned on by 'set hlsearch'
 set ignorecase
