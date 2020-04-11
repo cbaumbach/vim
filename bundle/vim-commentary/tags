@@ -1,0 +1,8 @@
+:Commentary	doc/commentary.txt	/*:Commentary*
+commentary.txt	doc/commentary.txt	/*commentary.txt*
+gc	doc/commentary.txt	/*gc*
+gcc	doc/commentary.txt	/*gcc*
+gcgc	doc/commentary.txt	/*gcgc*
+gcu	doc/commentary.txt	/*gcu*
+o_gc	doc/commentary.txt	/*o_gc*
+v_gc	doc/commentary.txt	/*v_gc*

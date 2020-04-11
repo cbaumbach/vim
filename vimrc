@@ -53,7 +53,7 @@ runtime utils/statusline.vim
 runtime utils/tabline.vim
 let &tabstop = g:preferred_tab_width
 set textwidth=70
-set timeoutlen=200
+set timeoutlen=500
 set nowrap
 " }}}
 " {{{ Mappings
@@ -353,6 +353,7 @@ if has('autocmd')
     augroup filetype_c
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
+        autocmd FileType c,cpp setlocal commentstring=//\ %s
         autocmd FileType c,cpp setlocal autowrite
     augroup END
 
