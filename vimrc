@@ -100,6 +100,26 @@ command! WW :w !sudo tee % >/dev/null
 " Make C-p and C-n work like Up and Down in Command mode
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+" Unlike %, ensures that 0 <= Mod(k, n) < n even if k < 0.
+function! Mod(k, n)
+    return ((a:k % a:n) + a:n) % a:n
+endfunction
+
+" Unlike :next/:previous, which will get stuck when they reach the
+" last/first file in the argument list, CycleArgs will wrap around.
+function! CycleArgs(offset)
+    if a:offset == 0 || argc() < 1
+        return
+    endif
+    execute 'argument ' . (Mod(argidx() + a:offset, argc()) + 1)
+endfunction
+
+" Cycle through buffer and argument list
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [a :call CycleArgs(1)<CR>
+nnoremap <silent> ]a :call CycleArgs(-1)<CR>
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
