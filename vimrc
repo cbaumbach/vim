@@ -120,6 +120,9 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [a :call CycleArgs(1)<CR>
 nnoremap <silent> ]a :call CycleArgs(-1)<CR>
+
+" Toggle case of current word
+inoremap <c-u> <esc>~iwgi
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
