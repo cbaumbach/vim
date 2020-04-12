@@ -293,8 +293,8 @@ function! s:Set_search_pattern_to_visual_selection(cmdtype)
 endfunction
 " }}}
 " {{{ german-postfix
-nnoremap <silent> <c-g> :call <sid>German_postfix()<cr>
-inoremap <silent> <c-g> <c-o>:call <sid>German_postfix()<cr>
+nnoremap <silent> <c-\> :call <sid>German_postfix()<cr>
+inoremap <silent> <c-\> <c-o>:call <sid>German_postfix()<cr>
 
 let g:german_postfix = 0
 function! s:German_postfix()
