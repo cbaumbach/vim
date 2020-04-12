@@ -123,6 +123,10 @@ nnoremap <silent> ]a :call CycleArgs(-1)<CR>
 
 " Toggle case of current word
 inoremap <c-u> <esc>~iwgi
+
+" Swap the more useful ` with the easier to type '
+nnoremap ` '
+nnoremap ' `
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
