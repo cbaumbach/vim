@@ -61,7 +61,6 @@ set nowrap
 " {{{ Mappings
 " {{{ Various mappings
 let mapleader = '-'
-let localmapleader = '\'
 
 " Alternative to esc, c-[, and c-c.
 inoremap jk <esc>
