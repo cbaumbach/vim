@@ -125,6 +125,8 @@ inoremap <c-u> <esc>~iwgi
 " Swap the more useful ` with the easier to type '
 nnoremap ` '
 nnoremap ' `
+onoremap ` '
+onoremap ' `
 " }}}
 " {{{ EasyMotion
 let g:EasyMotion_do_mapping = 0   " no default mappings
