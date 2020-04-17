@@ -398,5 +398,10 @@ if has('autocmd')
         autocmd FileType R setlocal foldmethod=manual
     augroup END
 
+    augroup filetype_sql
+        autocmd!
+        autocmd FileType sql setlocal commentstring=--\ %s
+    augroup END
+
 endif
 " }}}
