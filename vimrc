@@ -397,10 +397,5 @@ if has('autocmd')
         autocmd FileType R setlocal foldmethod=manual
     augroup END
 
-    augroup formatoptions
-        autocmd!
-        autocmd BufEnter * setlocal formatoptions=clqr
-    augroup END
-
 endif
 " }}}
