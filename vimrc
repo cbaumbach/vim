@@ -279,6 +279,11 @@ if has('autocmd')
         autocmd BufWritePre * call RemoveTrailingWhitespace()
     augroup END
 
+    augroup filetype_vim
+        autocmd!
+        autocmd FileType vim nnoremap <silent> <buffer> <leader>ss :write<cr>:source %<cr>
+    augroup END
+
     augroup filetype_c
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
