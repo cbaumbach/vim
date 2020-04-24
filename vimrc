@@ -14,7 +14,6 @@ else
     colorscheme elflord
 endif
 execute pathogen#infect()
-runtime! ftplugin/man.vim
 runtime macros/matchit.vim
 
 " ==== SETTINGS ======================================================
@@ -32,6 +31,8 @@ set hlsearch
 nohlsearch  " turn off highlighting turned on by 'set hlsearch'
 set ignorecase
 set incsearch
+runtime! ftplugin/man.vim
+set keywordprg=:Man
 set laststatus=2
 set list
 set listchars=conceal:\ ,tab:»\ ,trail:·
