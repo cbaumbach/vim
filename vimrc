@@ -297,4 +297,9 @@ if has('autocmd')
         autocmd FileType sql setlocal commentstring=--\ %s
     augroup END
 
+    augroup filetype_man
+        autocmd!
+        autocmd FileType man,help setlocal nolist
+    augroup END
+
 endif
