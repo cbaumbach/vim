@@ -1,36 +1,29 @@
-" {{{ Boilerplate
-set nocompatible  " reset early to avoid side-effects
+" ==== BOILERPLATE ===================================================
+set nocompatible
 if has('syntax')
-    syntax on  " start with default color settings
+    syntax on
 endif
 filetype plugin indent on
 if &t_Co >= 256 || has('gui_running')
-    colorscheme blue
+    if localtime() % 2 == 0
+        colorscheme blue
+    else
+        colorscheme green
+    endif
 else
-    colorscheme koehler
+    colorscheme elflord
 endif
-runtime utils/testing.vim
 execute pathogen#infect()
-runtime utils/tmux.vim
 runtime! ftplugin/man.vim
-" }}}
-" {{{ Options
-let g:preferred_tab_width = 4
+runtime macros/matchit.vim
 
+" ==== SETTINGS ======================================================
 set autoindent
-set backspace=indent,eol,start
-if !isdirectory($HOME . '/.tmp')
-    call mkdir($HOME . '/.tmp')
-endif
-let &cpoptions = substitute(&cpoptions, '\Ca', '', 'g')
-set directory=$HOME/.tmp//
 set encoding=utf-8
-" Prepend a pattern that matches unity failure messages.
+" Recognize Unity format (http://www.throwtheswitch.org/unity)
 let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
-set fillchars=stl:\ ,stlnc:-,vert:\|,fold:-,diff:-
-set foldlevelstart=99  " always start with all folds opened
-set formatoptions=clqrt
+set formatoptions=cjloqr
 set grepformat=%f:%l:%c:%m
 set grepprg=ack\ --nogroup\ --column\ $*
 set hidden
@@ -43,62 +36,37 @@ set laststatus=2
 set list
 set listchars=conceal:\ ,tab:»\ ,trail:·
 set matchtime=5
-let &shiftwidth = g:preferred_tab_width
+set pastetoggle=<f9>
+set shiftwidth=4
 set shortmess+=I
-let &showbreak = '> '
 set showmatch
 set sidescroll=1
 set smartcase
-let &softtabstop = g:preferred_tab_width
+set softtabstop=4
 set nostartofline
 runtime utils/statusline.vim
 runtime utils/tabline.vim
-let &tabstop = g:preferred_tab_width
+set tabstop=4
 set textwidth=70
 set tildeop
-set timeoutlen=500
+set notimeout
+set ttimeout
 set nowrap
-" }}}
-" {{{ Mappings
-" {{{ Various mappings
-let mapleader = '-'
 
-" Alternative to esc, c-[, and c-c.
-inoremap jk <esc>
+" ---- EASYMOTION ----------------------------------------------------
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let s:alphabet = 'abcdefghijklmnopqrstuvwxyz'
+let s:grouping_character = ';'
+let g:EasyMotion_keys = s:alphabet . toupper(s:alphabet) . s:grouping_character
+let g:EasyMotion_verbose = 0
+let g:EasyMotion_show_prompt = 0
+let g:EasyMotion_prompt = 'Query Char: '
 
-" Show colors for all highlight groups.
-nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
+" ---- MISCELLANEOUS -------------------------------------------------
+let g:remove_trailing_whitespace = 1
 
-" Reload filetype-specific files.
-nnoremap <silent> <leader>r :let &l:filetype = &l:filetype<cr>
-
-" Toggle paste mode.
-set pastetoggle=<f9>
-
-" Remove search highlighting and refresh the screen.
-nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
-
-" Follow tag in new tab.
-nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
-
-" Change to directory of current file.
-nnoremap <leader>. :lcd %:p:h<cr>
-
-" Select buffer from list.
-nnoremap <leader>b :ls<cr>:b<space>
-
-" Insert dirname of file in current buffer
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
-
-" Extend functionality of %
-runtime macros/matchit.vim
-
-" Force write with sudo
-command! WW :w !sudo tee % >/dev/null
-
-" Make C-p and C-n work like Up and Down in Command mode
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+" ==== FUNCTIONS =====================================================
 
 " Unlike %, ensures that 0 <= Mod(k, n) < n even if k < 0.
 function! Mod(k, n)
@@ -114,38 +82,7 @@ function! CycleArgs(offset)
     execute 'argument ' . (Mod(argidx() + a:offset, argc()) + 1)
 endfunction
 
-" Cycle through buffer and argument list
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [a :call CycleArgs(1)<CR>
-nnoremap <silent> ]a :call CycleArgs(-1)<CR>
-
-" Toggle case of current word
-inoremap <c-u> <esc>~iwgi
-
-" Swap the more useful ` with the easier to type '
-nnoremap ` '
-nnoremap ' `
-onoremap ` '
-onoremap ' `
-" }}}
-" {{{ EasyMotion
-let g:EasyMotion_do_mapping = 0   " no default mappings
-let g:EasyMotion_smartcase = 1    " ignore case of query character
-" Define target characters.
-let s:alphabet = 'abcdefghijklmnopqrstuvwxyz'
-let s:grouping_character = ';'
-let g:EasyMotion_keys = s:alphabet . toupper(s:alphabet) . s:grouping_character
-let g:EasyMotion_verbose = 0      " no jump summary
-let g:EasyMotion_show_prompt = 0  " no target character prompt
-let g:EasyMotion_prompt = 'Query Char: '  " query character prompt
-" Trigger by c-c c-space (nul represents c-space).
-nmap <c-c><nul> <plug>(easymotion-s)
-" }}}
-" {{{ Auto-wrapping
-nnoremap <leader>l :call Toggle_auto_wrapping()<cr>
-
-function! Toggle_auto_wrapping()
+function! ToggleAutoWrap()
     let fo = &l:formatoptions
     if fo =~ 't'
         let &l:formatoptions = substitute(fo, 't', '', 'g')
@@ -155,126 +92,37 @@ function! Toggle_auto_wrapping()
         echo 'auto-wrap on'
     endif
 endfunction
-" }}}
-" {{{ :highlight groups under cursor
-nnoremap <leader>= :call <SID>Show_highlighting_group()<cr>
 
-function! <SID>Show_highlighting_group()
-    if !exists('*synstack')
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
-" }}}
-" {{{ Toggle modifiable and readonly
-" The mappings look like the corresponding command-line options.
-nnoremap <silent> -M :call <sid>toggle_modifiable()<cr>
-nnoremap <silent> -R :call <sid>toggle_readonly()<cr>
-
-function! s:toggle_modifiable()
+function! ToggleModifiable()
     let &l:modifiable = ! &l:modifiable
     if &l:modifiable && ! &write
         let &write = 1
     endif
-    call <sid>update_statusline()
+    call UpdateStatusLine()
 endfunction
 
-function! s:toggle_readonly()
+function! ToggleReadonly()
     let &l:readonly = ! &l:readonly
-    call <sid>update_statusline()
+    call UpdateStatusLine()
 endfunction
 
-function! s:update_statusline()
+function! UpdateStatusLine()
     " Set global option to force statusline update
     let &readonly = &readonly  " no-op
 endfunction
-" }}}
-" {{{ Switch buffer
-command! -nargs=1 -complete=customlist,FindMatchingBuffers Buffer :buffer <args>
-nnoremap <c-x>b :call Switch_buffer()<cr>
 
-function! Switch_buffer()
-    let buffer = input(':buffer ', '', 'customlist,FindMatchingBuffers')
-    execute 'buffer ' . buffer
-endfunction
-
-function! FindMatchingBuffers(ArgLead, CmdLine, CursorPos)
-    let buffers = map(range(1, bufnr('$')), 'bufname(v:val)')
-    let pattern = s:trim(a:ArgLead)
-    if empty(pattern)
-        let matching_buffers = buffers
-    else
-        let matching_buffers = filter(buffers, 'v:val =~? pattern')
-    endif
-    let leading_whitespace = matchstr(a:ArgLead, '^\s*')
-    return map(matching_buffers, 'leading_whitespace . v:val')
-endfunction
-" }}}
-" {{{ Show help in current window
-nnoremap <leader>h :call Help()<cr>
-
-function! Help()
-    let topic = s:trim(input(':help ', '', 'help'))
-    if empty(topic)
-        echo
-        return
-    endif
-    let target_window = winnr()
-    let buffers = map(range(1, winnr('$')), 'winbufnr(v:val)')
-    let window_settings = []
-    for i in range(1, winnr('$'))
-        execute i . 'wincmd w'
-        call add(window_settings, winsaveview())
-    endfor
-    try
-        execute ':help ' . topic
-    catch /:E149/
-        echohl ErrorMsg
-        echo 'E149: Sorry, no help for ' . topic
-        echohl None
-        return
-    endtry
-    let help_buffer = bufnr('%')
-    let cursor_line = getpos('.')[1]
-    if winnr('$') > len(window_settings)
-        " A new window was created.  Close it.
-        hide
-    elseif winnr() != target_window
-        " The help buffer was opened in an existing window but not the
-        " one we wanted.  From the documentation of :help we even know
-        " that the window contained a help page buffer.
-        "
-        " Restore the accidentally changed window.
-        execute 'buffer ' . buffers[winnr() - 1]
-        call winrestview(window_settings[winnr() - 1])
-    endif
-    execute target_window . 'wincmd w'
-    execute 'buffer ' . help_buffer
-    execute 'normal! ' . cursor_line . 'G'
-    normal! zt
-    " Don't use special characters for tabs etc.
-    setlocal nolist
-endfunction
-
-function! s:trim(s)
+function! Trim(s)
     return substitute(substitute(a:s, '^\s*', '', ''), '\s*$', '', '')
 endfunction
-" }}}
-" {{{ Insert filename
-inoremap <c-f> <esc>:call Insert_filename()<cr>
 
-function! Insert_filename()
-    let path = s:trim(input('File: ', '', 'file'))
+function! InsertFilename()
+    let path = Trim(input('File: ', '', 'file'))
     if path == '' | echo | return | endif
     let old_contents = getreg('')
     call setreg('', path)
     normal p
     call setreg('', old_contents)
-    call s:normal_a()
-endfunction
-
-function! s:normal_a()
-    if s:cursor_at_end_of_line()
+    if CursorAtEndOfLine()
         startinsert!
     else
         normal l
@@ -282,120 +130,160 @@ function! s:normal_a()
     endif
 endfunction
 
-function! s:cursor_at_end_of_line()
+function! CursorAtEndOfLine()
     return col('.') == col('$') - 1
 endfunction
-" }}}
-" {{{ Search for selected text
-xnoremap * :<c-u>call <sid>Set_search_pattern_to_visual_selection('/')<cr>/<c-r>=@/<cr><cr>
-xnoremap # :<c-u>call <sid>Set_search_pattern_to_visual_selection('?')<cr>?<c-r>=@/<cr><cr>
 
-function! s:Set_search_pattern_to_visual_selection(cmdtype)
+function! SetSearchPatternToVisualSelection(cmdtype)
     let temp = @"
     normal! gvy
     let @/ = '\V' . substitute(escape(@", a:cmdtype . '\'), '\n', '\\n', 'g')
     let @" = temp
 endfunction
-" }}}
-" {{{ german-postfix
-nnoremap <silent> <c-\> :call <sid>German_postfix()<cr>
-inoremap <silent> <c-\> <c-o>:call <sid>German_postfix()<cr>
 
-let g:german_postfix = 0
-function! s:German_postfix()
-    if g:german_postfix
-        iunmap ae
-        iunmap oe
-        iunmap ue
-        iunmap AE
-        iunmap OE
-        iunmap UE
-        iunmap sz
-        let g:german_postfix = 0
+function! ToggleGermanPostfix()
+    if !exists("b:german_postfix")
+        let b:german_postfix = 0
+    endif
+    if b:german_postfix
+        iunmap <buffer> ae
+        iunmap <buffer> oe
+        iunmap <buffer> ue
+        iunmap <buffer> AE
+        iunmap <buffer> OE
+        iunmap <buffer> UE
+        iunmap <buffer> sz
+        let &l:timeout = 0
+        let b:german_postfix = 0
     else
-        inoremap ae <c-k>a:
-        inoremap oe <c-k>o:
-        inoremap ue <c-k>u:
-        inoremap AE <c-k>A:
-        inoremap OE <c-k>O:
-        inoremap UE <c-k>U:
-        inoremap sz <c-k>ss
-        let g:german_postfix = 1
+        inoremap <buffer> ae <c-k>a:
+        inoremap <buffer> oe <c-k>o:
+        inoremap <buffer> ue <c-k>u:
+        inoremap <buffer> AE <c-k>A:
+        inoremap <buffer> OE <c-k>O:
+        inoremap <buffer> UE <c-k>U:
+        inoremap <buffer> sz <c-k>ss
+        let &l:timeout = 1
+        let b:german_postfix = 1
     endif
 endfunction
-" }}}
-" {{{ Delete current buffer
-nnoremap <silent> <c-x>k :call <sid>Delete_current_buffer()<cr>
 
-function! s:Delete_current_buffer()
+function! WipeoutBuffer()
     let alternate_file = bufnr('#')
     bprevious
-    bdelete #
+    bwipeout #
     if alternate_file != -1
         execute 'buffer' alternate_file
     endif
 endfunction
-" }}}
-" }}}
-" {{{ Autocommands
-" {{{ Trailing whitespace
-function! Remove_trailing_whitespace()
+
+function! RemoveWhitespaceAtEndOfLine()
     if !&binary
         let old_cursor_position = getpos(".")
         silent! %s/\s\+$//ge
         call setpos(".", old_cursor_position)
     endif
 endfunction
-" }}}
-" {{{ Blank lines at end of file
-function! Remove_empty_lines_at_end_of_file()
+
+function! RemoveEmptyLinesAtEndOfFile()
     if !&binary
         let old_cursor_position = getpos(".")
         silent! v/\_s*\S/d
         call setpos(".", old_cursor_position)
     endif
 endfunction
-" }}}
-" {{{ Save and restore buffer position
-function! Save_current_position()
-    let b:window_settings = winsaveview()
-endfunction
 
-function! Restore_last_position()
-    if exists('b:window_settings')
-        call winrestview(b:window_settings)
+function! RemoveTrailingWhitespace()
+    if !exists('b:remove_trailing_whitespace')
+        let b:remove_trailing_whitespace = g:remove_trailing_whitespace
+    endif
+    if !&binary && b:remove_trailing_whitespace
+        call RemoveWhitespaceAtEndOfLine()
+        call RemoveEmptyLinesAtEndOfFile()
     endif
 endfunction
-" }}}
+
+function! ToggleRemoveTrailingWhitespace()
+    if !exists('b:remove_trailing_whitespace')
+        let b:remove_trailing_whitespace = g:remove_trailing_whitespace
+    endif
+    if b:remove_trailing_whitespace
+        let b:remove_trailing_whitespace = 0
+        echo 'keep trailing whitespace'
+    else
+        let b:remove_trailing_whitespace = 1
+        echo 'no trailing whitespace'
+    endif
+endfunction
+
+function! ShowHighlightingGroup()
+    if !exists('*synstack')
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
+
+" ==== MAPPINGS ======================================================
+let mapleader = '-'
+
+" ---- USED ALL THE TIME ---------------------------------------------
+inoremap jk <esc>
+nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
+inoremap <c-u> <esc>vb~gi
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
+
+" ---- FREQUENTLY ----------------------------------------------------
+nnoremap ` '
+nnoremap ' `
+onoremap ` '
+onoremap ' `
+inoremap <c-f> <esc>:call InsertFilename()<cr>
+nnoremap <leader>l :call ToggleAutoWrap()<cr>
+nnoremap <leader><space> :call ToggleRemoveTrailingWhitespace()<cr>
+nnoremap <silent> <leader>M :call ToggleModifiable()<cr>
+nnoremap <silent> <leader>R :call ToggleReadonly()<cr>
+nnoremap <silent> <c-x>k :call WipeoutBuffer()<cr>
+" Trigger EasyMotion with C-c C-Space
+nmap <c-c><nul> <plug>(easymotion-s)
+
+" ---- SOMETIMES -----------------------------------------------------
+nnoremap <leader>b :ls<cr>:buffer<space>
+nnoremap <silent> <leader>. :lcd %:p:h<cr>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [a :call CycleArgs(1)<CR>
+nnoremap <silent> ]a :call CycleArgs(-1)<CR>
+nnoremap <silent> <c-\> :call ToggleGermanPostfix()<cr>
+inoremap <silent> <c-\> <c-o>:call ToggleGermanPostfix()<cr>
+xnoremap * :<c-u>call SetSearchPatternToVisualSelection('/')<cr>/<c-r>=@/<cr><cr>
+xnoremap # :<c-u>call SetSearchPatternToVisualSelection('?')<cr>?<c-r>=@/<cr><cr>
+nnoremap <leader>h :tab help<space>
+
+" ---- ALMOST NEVER --------------------------------------------------
+nnoremap <silent> <leader>r :let &l:filetype = &l:filetype<cr>
+nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
+nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
+nnoremap <leader>= :call ShowHighlightingGroup()<cr>
+
+" ==== COMMANDS ======================================================
+command! WW :w !sudo tee % >/dev/null
+
+" ==== AUTOCOMMANDS ==================================================
 if has('autocmd')
 
     augroup general
         autocmd!
-        autocmd BufWritePre * call Remove_trailing_whitespace()
-        autocmd BufWritePre * call Remove_empty_lines_at_end_of_file()
-        autocmd BufEnter * call Restore_last_position()
-        autocmd BufLeave * call Save_current_position()
-    augroup END
-
-    augroup filetype_vim
-        autocmd!
-        autocmd FileType vim setlocal foldmethod=marker foldlevel=0
-        autocmd FileType vim nnoremap <buffer> ss :write<cr>:source %<cr>
+        autocmd BufWritePre * call RemoveTrailingWhitespace()
     augroup END
 
     augroup filetype_c
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
         autocmd FileType c,cpp setlocal commentstring=//\ %s
+        autocmd FileType c,cpp setlocal nocindent
         autocmd FileType c,cpp setlocal autowrite
-    augroup END
-
-    augroup filetype_R
-        autocmd!
-        autocmd FileType R setlocal makeprg=Rscript\ %
-        autocmd FileType R nnoremap <buffer> ss :make<cr>
-        autocmd FileType R setlocal autowrite
-        autocmd FileType R setlocal foldmethod=manual
     augroup END
 
     augroup filetype_sql
@@ -404,4 +292,3 @@ if has('autocmd')
     augroup END
 
 endif
-" }}}
