@@ -234,6 +234,9 @@ inoremap <c-u> <esc>vb~gi
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
+nnoremap <silent> <c-n> :bnext<cr>
+" <nul> = C-Space
+nnoremap <silent> <nul> :call CycleArgs(1)<cr>
 
 " ---- FREQUENTLY ----------------------------------------------------
 nnoremap ` '
@@ -252,10 +255,6 @@ nmap <c-c><nul> <plug>(easymotion-s)
 " ---- SOMETIMES -----------------------------------------------------
 nnoremap <leader>b :ls<cr>:buffer<space>
 nnoremap <silent> <leader>. :lcd %:p:h<cr>
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [a :call CycleArgs(1)<CR>
-nnoremap <silent> ]a :call CycleArgs(-1)<CR>
 nnoremap <silent> <c-\> :call ToggleGermanPostfix()<cr>
 inoremap <silent> <c-\> <c-o>:call ToggleGermanPostfix()<cr>
 xnoremap * :<c-u>call SetSearchPatternToVisualSelection('/')<cr>/<c-r>=@/<cr><cr>
