@@ -234,6 +234,8 @@ inoremap <c-u> <esc>vb~gi
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
+cnoremap <c-b> <left>
+cnoremap <c-f> <right>
 nnoremap <silent> <c-n> :bnext<cr>
 " <nul> = C-Space
 nnoremap <silent> <nul> :call CycleArgs(1)<cr>
