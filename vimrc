@@ -262,6 +262,8 @@ inoremap <silent> <c-\> <c-o>:call ToggleGermanPostfix()<cr>
 xnoremap * :<c-u>call SetSearchPatternToVisualSelection('/')<cr>/<c-r>=@/<cr><cr>
 xnoremap # :<c-u>call SetSearchPatternToVisualSelection('?')<cr>?<c-r>=@/<cr><cr>
 nnoremap <leader>h :tab help<space>
+nnoremap & :&&<cr>
+xnoremap & :&&<cr>
 
 " ---- ALMOST NEVER --------------------------------------------------
 nnoremap <silent> <leader>r :let &l:filetype = &l:filetype<cr>
