@@ -274,7 +274,7 @@ nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>= :call ShowHighlightingGroup()<cr>
 
 " ==== COMMANDS ======================================================
-command! WW :w !sudo tee % >/dev/null
+command! WW w !sudo tee % >/dev/null
 
 " ==== AUTOCOMMANDS ==================================================
 if has('autocmd')
