@@ -236,6 +236,8 @@ cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 cnoremap <c-b> <left>
 cnoremap <c-f> <right>
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
 nnoremap <silent> <c-n> :bnext<cr>
 " <nul> = C-Space
 nnoremap <silent> <nul> :call CycleArgs(1)<cr>
