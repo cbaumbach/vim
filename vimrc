@@ -269,7 +269,7 @@ xnoremap & :&&<cr>
 
 " ---- ALMOST NEVER --------------------------------------------------
 nnoremap <silent> <leader>r :let &l:filetype = &l:filetype<cr>
-nnoremap <silent> <c-t> <c-w><c-]><c-w>T<cr>
+nnoremap <silent> <leader>t <c-w><c-]><c-w>T<cr>
 nnoremap <leader>cs :source $VIMRUNTIME/syntax/hitest.vim<cr>
 nnoremap <leader>= :call ShowHighlightingGroup()<cr>
 
