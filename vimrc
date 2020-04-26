@@ -275,6 +275,7 @@ nnoremap <leader>= :call ShowHighlightingGroup()<cr>
 
 " ==== COMMANDS ======================================================
 command! WW w !sudo tee % >/dev/null
+command! Tags !ctags -R --exclude=.git --exclude=venv
 
 " ==== AUTOCOMMANDS ==================================================
 if has('autocmd')
