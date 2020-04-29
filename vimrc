@@ -15,6 +15,7 @@ else
 endif
 execute pathogen#infect()
 runtime macros/matchit.vim
+runtime utils/testing.vim
 
 " ==== SETTINGS ======================================================
 set autoindent
