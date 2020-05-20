@@ -244,10 +244,6 @@ nnoremap <silent> <c-n> :bnext<cr>
 nnoremap <silent> <nul> :call CycleArgs(1)<cr>
 
 " ---- FREQUENTLY ----------------------------------------------------
-nnoremap ` '
-nnoremap ' `
-onoremap ` '
-onoremap ' `
 inoremap <c-f> <esc>:call InsertFilename()<cr>
 nnoremap <leader>l :call ToggleAutoWrap()<cr>
 nnoremap <leader><space> :call ToggleRemoveTrailingWhitespace()<cr>
