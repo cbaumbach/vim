@@ -40,7 +40,6 @@ runtime utils/statusline.vim
 runtime utils/tabline.vim
 set tabstop=4
 set textwidth=70
-set tildeop
 set notimeout
 set ttimeout
 set nowrap
