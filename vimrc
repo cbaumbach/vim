@@ -3,7 +3,8 @@ set nocompatible
 if has('syntax')
     syntax on
 endif
-filetype plugin indent on
+filetype on
+filetype plugin indent off
 colorscheme mono
 execute pathogen#infect()
 runtime macros/matchit.vim
