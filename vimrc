@@ -23,7 +23,7 @@ set encoding=utf-8
 " Recognize Unity format (http://www.throwtheswitch.org/unity)
 let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
 set expandtab
-set formatoptions=cjloqr
+set formatoptions=tcql
 set grepformat=%f:%l:%c:%m
 set grepprg=ack\ --nogroup\ --column\ $*
 set hidden
