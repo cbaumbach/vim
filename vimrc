@@ -36,7 +36,6 @@ set showmatch
 set sidescroll=1
 set smartcase
 set softtabstop=4
-set nostartofline
 runtime utils/statusline.vim
 runtime utils/tabline.vim
 set tabstop=4
