@@ -274,6 +274,7 @@ if has('autocmd')
     augroup filetype_vim
         autocmd!
         autocmd FileType vim nnoremap <silent> <buffer> <leader>ss :write<cr>:source %<cr>
+        autocmd FileType vim setlocal commentstring=\"\ %s
     augroup END
 
     augroup filetype_c
