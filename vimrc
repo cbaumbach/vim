@@ -1,8 +1,6 @@
 " ==== BOILERPLATE ===================================================
 set nocompatible
-if has('syntax')
-    syntax on
-endif
+if has('syntax') | syntax on | endif
 filetype on
 filetype plugin indent off
 colorscheme mono
