@@ -4,15 +4,7 @@ if has('syntax')
     syntax on
 endif
 filetype plugin indent on
-if &t_Co >= 256 || has('gui_running')
-    if localtime() % 2 == 0
-        colorscheme blue
-    else
-        colorscheme green
-    endif
-else
-    colorscheme elflord
-endif
+colorscheme mono
 execute pathogen#infect()
 runtime macros/matchit.vim
 runtime utils/testing.vim
