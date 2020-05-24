@@ -290,6 +290,11 @@ if has('autocmd')
         autocmd FileType js setlocal commentstring=//\ %s
     augroup END
 
+    augroup filetype_R
+        autocmd!
+        autocmd FileType R setlocal commentstring=#\ %s
+    augroup END
+
     augroup filetype_sql
         autocmd!
         autocmd FileType sql setlocal commentstring=--\ %s
