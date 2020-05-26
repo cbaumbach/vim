@@ -20,8 +20,8 @@ hi EasyMotionTarget ctermfg=Green    ctermbg=NONE guifg=Green    guibg=NONE
 hi EasyMotionShade  ctermfg=DarkGray ctermbg=NONE guifg=DarkGray guibg=NONE
 
 " Diff
-hi DiffAdd    ctermfg=Green ctermbg=Black guifg=Green guibg=Black
-hi DiffDelete ctermfg=Red   ctermbg=Black guifg=Red   guibg=Black
+hi DiffAdded   ctermfg=Green ctermbg=Black guifg=Green guibg=Black
+hi DiffRemoved ctermfg=Red   ctermbg=Black guifg=Red   guibg=Black
 
 hi! link Comment     Normal
 hi! link Constant    Normal
