@@ -2,7 +2,8 @@
 set nocompatible
 if has('syntax') | syntax on | endif
 filetype on
-filetype plugin indent off
+filetype plugin on
+filetype indent off
 colorscheme mono
 execute pathogen#infect()
 runtime macros/matchit.vim
@@ -274,7 +275,6 @@ if has('autocmd')
     augroup filetype_vim
         autocmd!
         autocmd FileType vim nnoremap <silent> <buffer> <leader>ss :write<cr>:source %<cr>
-        autocmd FileType vim setlocal commentstring=\"\ %s
     augroup END
 
     augroup filetype_c
@@ -283,11 +283,6 @@ if has('autocmd')
         autocmd FileType c,cpp setlocal commentstring=//\ %s
         autocmd FileType c,cpp setlocal nocindent
         autocmd FileType c,cpp setlocal autowrite
-    augroup END
-
-    augroup filetype_js
-        autocmd!
-        autocmd FileType js setlocal commentstring=//\ %s
     augroup END
 
     augroup filetype_R
