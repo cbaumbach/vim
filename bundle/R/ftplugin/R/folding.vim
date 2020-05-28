@@ -1,6 +1,7 @@
 " Adapted from 'Learn Vimscript the Hard Way' by Steve Losh.
 
-setlocal foldmethod=expr
+setlocal foldmethod=manual
+" setlocal foldmethod=expr
 setlocal foldexpr=GetRFold(v:lnum)
 setlocal foldlevelstart=99
 
