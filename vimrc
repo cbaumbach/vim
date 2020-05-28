@@ -1,6 +1,5 @@
 " ==== BOILERPLATE ===================================================
 set nocompatible
-if has('syntax') | syntax on | endif
 filetype on
 filetype plugin on
 filetype indent off
@@ -293,6 +292,11 @@ if has('autocmd')
     augroup filetype_man
         autocmd!
         autocmd FileType man,help setlocal nolist
+    augroup END
+
+    augroup filetype_gitcommit
+        autocmd!
+        autocmd FileType gitcommit if has('syntax') | syntax on | endif
     augroup END
 
 endif
