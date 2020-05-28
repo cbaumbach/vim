@@ -21,7 +21,9 @@ hi EasyMotionShade  ctermfg=DarkGray ctermbg=NONE guifg=DarkGray guibg=NONE
 
 " Diff
 hi DiffAdded   ctermfg=Green ctermbg=Black guifg=Green guibg=Black
+hi DiffAdd     ctermfg=Green ctermbg=Black guifg=Green guibg=Black
 hi DiffRemoved ctermfg=Red   ctermbg=Black guifg=Red   guibg=Black
+hi DiffDelete  ctermfg=Red   ctermbg=Black guifg=Red   guibg=Black
 
 hi! link Comment     Normal
 hi! link Constant    Normal
