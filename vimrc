@@ -285,11 +285,6 @@ if has('autocmd')
         autocmd FileType c,cpp setlocal autowrite
     augroup END
 
-    augroup filetype_R
-        autocmd!
-        autocmd FileType R setlocal commentstring=#\ %s
-    augroup END
-
     augroup filetype_sql
         autocmd!
         autocmd FileType sql setlocal commentstring=--\ %s
