@@ -1,5 +1,6 @@
 " ==== BOILERPLATE ===================================================
 set nocompatible
+if has('syntax') | syntax off | endif
 filetype on
 filetype plugin on
 filetype indent off
