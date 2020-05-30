@@ -281,6 +281,7 @@ if has('autocmd')
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
         autocmd FileType c,cpp setlocal commentstring=//\ %s
+        autocmd FileType c,cpp setlocal formatoptions=cql
         autocmd FileType c,cpp setlocal nocindent
         autocmd FileType c,cpp setlocal autowrite
     augroup END
