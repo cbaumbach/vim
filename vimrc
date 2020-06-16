@@ -11,6 +11,7 @@ runtime utils/testing.vim
 
 " ==== SETTINGS ======================================================
 set autoindent
+set commentstring=#\ %s
 set encoding=utf-8
 " Recognize Unity format (http://www.throwtheswitch.org/unity)
 let &errorformat = '%*[.]%f:%l:%*[^:]:%*[^:]:%m,' . &errorformat
