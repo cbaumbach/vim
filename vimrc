@@ -279,26 +279,10 @@ if has('autocmd')
         autocmd FileType sql   setlocal commentstring=--\ %s
     augroup END
 
-    augroup filetype_vim
+    augroup miscellaneous
         autocmd!
         autocmd FileType vim nnoremap <silent> <buffer> <leader>ss :write<cr>:source %<cr>
-    augroup END
-
-    augroup filetype_c
-        autocmd!
-        autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
-        autocmd FileType c,cpp setlocal formatoptions=cql
-        autocmd FileType c,cpp setlocal nocindent
-        autocmd FileType c,cpp setlocal autowrite
-    augroup END
-
-    augroup filetype_man
-        autocmd!
-        autocmd FileType man,help setlocal nolist
-    augroup END
-
-    augroup filetype_gitcommit
-        autocmd!
+        autocmd FileType c,cpp setlocal formatoptions=cql autowrite
         autocmd FileType gitcommit if has('syntax') | syntax on | endif
     augroup END
 
