@@ -273,6 +273,12 @@ if has('autocmd')
         autocmd BufWritePre * call RemoveTrailingWhitespace()
     augroup END
 
+    augroup commentstring
+        autocmd!
+        autocmd FileType c,cpp setlocal commentstring=//\ %s
+        autocmd FileType sql   setlocal commentstring=--\ %s
+    augroup END
+
     augroup filetype_vim
         autocmd!
         autocmd FileType vim nnoremap <silent> <buffer> <leader>ss :write<cr>:source %<cr>
@@ -281,15 +287,9 @@ if has('autocmd')
     augroup filetype_c
         autocmd!
         autocmd FileType c,cpp setlocal comments=sr:/*,mb:\ ,e:*/,://,fb:-,fb:+
-        autocmd FileType c,cpp setlocal commentstring=//\ %s
         autocmd FileType c,cpp setlocal formatoptions=cql
         autocmd FileType c,cpp setlocal nocindent
         autocmd FileType c,cpp setlocal autowrite
-    augroup END
-
-    augroup filetype_sql
-        autocmd!
-        autocmd FileType sql setlocal commentstring=--\ %s
     augroup END
 
     augroup filetype_man
